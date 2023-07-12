@@ -8,15 +8,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Token View Controller-->
+        <!--Login Screen-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="TokenViewController" id="BYZ-38-t0r" customClass="TokenViewController" customModule="testProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="testProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="813-oe-HNK">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="813-oe-HNK">
                                 <rect key="frame" x="82" y="286" width="229" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -28,26 +28,41 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sh8-op-0Wx">
                                 <rect key="frame" x="204" y="435" width="107" height="53"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="107" id="4H1-op-kvn"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Register"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Register">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <segue destination="d0p-Pg-dEb" kind="show" id="O2K-ab-Gm1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cD4-3e-Ah0">
                                 <rect key="frame" x="82" y="435" width="114" height="53"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Login"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Login">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="loginClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="j3z-bB-waR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0C8-6d-oIg">
+                                <rect key="frame" x="159" y="619" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <segue destination="qMt-Ow-zik" kind="show" identifier="ShowHomeView" id="8hG-Tx-1jX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemMintColor"/>
+                        <color key="backgroundColor" systemColor="systemGray3Color"/>
                         <constraints>
                             <constraint firstItem="813-oe-HNK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2GB-nx-ZHm"/>
                             <constraint firstItem="mRv-aD-cgy" firstAttribute="leading" secondItem="cD4-3e-Ah0" secondAttribute="leading" id="M6w-e0-3jR"/>
@@ -62,7 +77,7 @@
                             <constraint firstItem="813-oe-HNK" firstAttribute="trailing" secondItem="mRv-aD-cgy" secondAttribute="trailing" id="sNU-aq-PbI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="I0s-r8-1Jx"/>
+                    <navigationItem key="navigationItem" title="Login Screen" id="I0s-r8-1Jx"/>
                     <connections>
                         <outlet property="passwordTextField" destination="mRv-aD-cgy" id="vy3-g6-R7c"/>
                         <outlet property="usernameTextField" destination="813-oe-HNK" id="Uxe-Hn-cC2"/>
@@ -72,7 +87,7 @@
             </objects>
             <point key="canvasLocation" x="-121.37404580152672" y="45.774647887323944"/>
         </scene>
-        <!--Register View Controller-->
+        <!--Register Screen-->
         <scene sceneID="qJw-6P-OZ9">
             <objects>
                 <viewController id="d0p-Pg-dEb" customClass="RegisterViewController" customModule="testProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -102,15 +117,18 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noF-c8-E3e">
                                 <rect key="frame" x="135" y="485" width="123" height="52"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Register"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Register">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="registerButtonClicked:" destination="d0p-Pg-dEb" eventType="touchUpInside" id="MeC-zS-6OO"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kdt-Vg-gjx"/>
-                        <color key="backgroundColor" systemColor="systemMintColor"/>
+                        <color key="backgroundColor" systemColor="systemGray3Color"/>
                         <constraints>
                             <constraint firstItem="noF-c8-E3e" firstAttribute="top" secondItem="3Fw-0F-MR2" secondAttribute="bottom" constant="42" id="1gA-mN-VLu"/>
                             <constraint firstItem="3Fw-0F-MR2" firstAttribute="centerX" secondItem="noF-c8-E3e" secondAttribute="centerX" id="2au-kK-A4N"/>
@@ -130,7 +148,7 @@
                             <constraint firstItem="kdt-Vg-gjx" firstAttribute="bottom" secondItem="noF-c8-E3e" secondAttribute="bottom" constant="281" id="sYt-wm-J6Y"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="wp8-RM-IF6"/>
+                    <navigationItem key="navigationItem" title="Register Screen" id="wp8-RM-IF6"/>
                     <connections>
                         <outlet property="emailTextField" destination="PFI-vM-aEj" id="kup-zN-emu"/>
                         <outlet property="nameTextField" destination="ld8-XQ-R7P" id="iml-ms-enL"/>
@@ -141,6 +159,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="usX-mM-NhB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="812.97709923664115" y="45.774647887323944"/>
+        </scene>
+        <!--Home Page-->
+        <scene sceneID="opV-Qo-hk8">
+            <objects>
+                <viewController id="qMt-Ow-zik" customClass="HomeViewController" customModule="testProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jym-gL-YQI">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iIP-f0-TLq">
+                                <rect key="frame" x="110" y="409" width="173" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Chy-Hb-Od5"/>
+                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Home Page" largeTitleDisplayMode="always" id="fzE-Ui-iml">
+                        <barButtonItem key="backBarButtonItem" title=" " id="u6w-6m-YgB"/>
+                        <barButtonItem key="rightBarButtonItem" title="Sing Out" id="GYT-f8-FbN">
+                            <connections>
+                                <action selector="singOutButton:" destination="qMt-Ow-zik" id="QVe-9W-TQs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="welcomeLabel" destination="iIP-f0-TLq" id="Q6i-iT-ywn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Df1-it-2kY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-982" y="790"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W3t-aa-b5g">
@@ -162,8 +215,17 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemMintColor">
-            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

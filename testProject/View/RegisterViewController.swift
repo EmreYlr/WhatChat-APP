@@ -31,6 +31,7 @@ class RegisterViewController: UIViewController {
             return
         }
         registerUser(name: name, surname: surname, email: email, password: password)
+        loadingScreen()
     }
     
     func registerUser(name: String, surname: String, email: String, password:String){
@@ -39,6 +40,8 @@ class RegisterViewController: UIViewController {
                 self.registerViewModel.registerUser(token, name, surname, email, password) { statusCode in
                     if let statusCode = statusCode{
                         switch statusCode{
+                        case 400:
+                            print("Format Hatalı Eposta")
                         case 401:
                             print("Bağlantı Hatası")
                             break
@@ -46,7 +49,7 @@ class RegisterViewController: UIViewController {
                             print("Kayıt Başarılı")
                             break
                         default:
-                            print("Beklenmedik Bir Hata Oluştu")
+                            print("Beklenmedik Bir Hata Oluştu. Hata kodu \(statusCode)")
                             break
                         }
                     }
@@ -56,12 +59,7 @@ class RegisterViewController: UIViewController {
         
     }
     
-    func Alert(title: String, alertMessage: String){
-        let alert = UIAlertController(title: title, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
-        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel)
-        alert.addAction(okButton)
-        self.present(alert, animated: true)
-    }
+    
     
     
     

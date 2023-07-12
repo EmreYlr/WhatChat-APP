@@ -6,22 +6,25 @@
 //
 
 import Alamofire
-
-class TokenViewModel {
+import JWTDecode
+class LoginViewModel {
+    let services = Services()
     var token: Token?
     
     func getUserToken(_ username: String, _ password: String, completion: @escaping (Token?) -> Void) {
         let headers: HTTPHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]
+        //user kullan
         let parameters = [
             "grant_type": "password",
             "username": username,
             "password": password,
             "client_id": "ios-test",
-            "client_secret": "7KeVk6d08bomnt8omhcE9y5zTdSzpFi0"
+            "client_secret": services.clientSecret
         ]
-        let url = URL(string: "https://testkeycloak.azurewebsites.net/realms/test_realm/protocol/openid-connect/token/")!
+        
+        let url = URL(string: "\(services.urlAdress)/realms/test_realm/protocol/openid-connect/token/")!
         
         DispatchQueue.global(qos: .background).async {
             AF.request(url, method: .post, parameters: parameters, headers: headers).responseDecodable(of: Token.self) { response in

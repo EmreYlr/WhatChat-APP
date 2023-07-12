@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class RegisterViewModel{
-    
+    let services = Services()
     var statusCode : Int?
     
     func registerUser(_ token: String, _ username: String, _ surname: String, _ email: String, _ password: String, completion: @escaping(Int?)->(Void)){
@@ -19,7 +19,7 @@ class RegisterViewModel{
             "Authorization": "Bearer \(token)",
             "Content-Type": "application/json"
         ]
-        let url = URL(string: "https://testkeycloak.azurewebsites.net/admin/realms/test_realm/users")!
+        let url = URL(string: "\(services.urlAdress)/admin/realms/test_realm/users")!
         
         DispatchQueue.global(qos: .background).async {
             AF.request(url, method: .post, parameters: user,encoder: JSONParameterEncoder.default, headers: headers).responseData{ response in
@@ -27,7 +27,6 @@ class RegisterViewModel{
                     self.statusCode = response
                     DispatchQueue.main.async {
                         completion(response)
-                        
                     }
                 }
             }
