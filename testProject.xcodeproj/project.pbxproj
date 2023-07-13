@@ -10,6 +10,7 @@
 		C301169E2A5B345B0045DE7F /* ClientToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301169D2A5B345B0045DE7F /* ClientToken.swift */; };
 		C30116A02A5B36D20045DE7F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301169F2A5B36D20045DE7F /* User.swift */; };
 		C30655442A5F1FFE009E7CA1 /* JWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30655432A5F1FFE009E7CA1 /* JWT.swift */; };
+		C30655462A607281009E7CA1 /* RegisteredUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30655452A607281009E7CA1 /* RegisteredUser.swift */; };
 		C30F487E2A5D6F52002F0534 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F487D2A5D6F52002F0534 /* LoginViewModel.swift */; };
 		C32715832A5AFDF60018D869 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32715822A5AFDF60018D869 /* AppDelegate.swift */; };
 		C32715852A5AFDF60018D869 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32715842A5AFDF60018D869 /* SceneDelegate.swift */; };
@@ -34,6 +35,7 @@
 		C301169D2A5B345B0045DE7F /* ClientToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientToken.swift; sourceTree = "<group>"; };
 		C301169F2A5B36D20045DE7F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C30655432A5F1FFE009E7CA1 /* JWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWT.swift; sourceTree = "<group>"; };
+		C30655452A607281009E7CA1 /* RegisteredUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredUser.swift; sourceTree = "<group>"; };
 		C30F487D2A5D6F52002F0534 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C327157F2A5AFDF60018D869 /* testProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C32715822A5AFDF60018D869 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				C32715962A5B00EB0018D869 /* Token.swift */,
 				C301169D2A5B345B0045DE7F /* ClientToken.swift */,
 				C3EFD94A2A5EC62D0075BCD1 /* Services.swift */,
+				C30655452A607281009E7CA1 /* RegisteredUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				C30655442A5F1FFE009E7CA1 /* JWT.swift in Sources */,
 				C3C839D22A5D9EAB00FC8F2D /* ClientViewModel.swift in Sources */,
 				C3C839D02A5D9A9500FC8F2D /* RegisterViewModel.swift in Sources */,
+				C30655462A607281009E7CA1 /* RegisteredUser.swift in Sources */,
 				C3EFD9502A5EE4F20075BCD1 /* HomeViewController.swift in Sources */,
 				C32715972A5B00EB0018D869 /* Token.swift in Sources */,
 			);

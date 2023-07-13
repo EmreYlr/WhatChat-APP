@@ -11,6 +11,7 @@ import Alamofire
 class RegisterViewModel{
     let services = Services()
     var statusCode : Int?
+    var registerUser: RegisterUser?
     
     func registerUser(_ token: String, _ username: String, _ surname: String, _ email: String, _ password: String, completion: @escaping(Int?)->(Void)){
         
@@ -32,5 +33,30 @@ class RegisterViewModel{
             }
         }
     }
+    
+    func userIsVerified(email: String, token: String, completion: @escaping (Bool) -> Void) {
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)",
+            "Content-Type": "application/json"
+        ]
+        let url = URL(string: "\(services.urlAdress)/admin/realms/test_realm/users/?email=\(email)")!
+        DispatchQueue.global(qos: .background).async {
+            AF.request(url, method: .get, headers: headers).responseDecodable(of: [RegisterUser].self) { response in
+                if let registerUser = response.value {
+                    print(registerUser[0].emailVerified)
+                    DispatchQueue.main.async {
+                        completion(registerUser[0].emailVerified)
+                    }
+                    
+                } else {
+                    DispatchQueue.main.async {
+                        completion(false)
+                    }
+                    
+                }
+            }
+        }
+    }
+    
 }
 

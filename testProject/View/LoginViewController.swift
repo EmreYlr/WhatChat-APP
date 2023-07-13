@@ -11,7 +11,9 @@ import JWTDecode
 
 class LoginViewController: UIViewController{
     //MARK: VARIABLES
+    var name: String?
     var loginViewModel: LoginViewModel!
+    var load : UIAlertController?
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -21,8 +23,8 @@ class LoginViewController: UIViewController{
         usernameTextField.text = "yeleremre@hotmail.com"
         passwordTextField.text = "12345"
         loginViewModel = LoginViewModel()
+        load = nil
     }
-    
 }
 //MARK: Extension-BUTTON
 extension LoginViewController{
@@ -31,23 +33,27 @@ extension LoginViewController{
             Alert(title: "Error", alertMessage: "Username or password is empty!")
             return
         }
+        
         fetchToken(username: username, password: password) { token in
-            do{
-                let jwt = try decode(jwt: token!.accessToken)
-                debugPrint(jwt)
-                
-            }catch let error{
-                print(error.localizedDescription)
+            if let token = token{
+                do{
+                    let jwt = try decode(jwt: token.accessToken)
+                    self.name = jwt.name! + " " + jwt.surname!
+                    //self.stopLoader(loader: self.load)
+                    self.performSegue(withIdentifier: "ShowHomeView", sender: nil)
+                }catch let error{
+                    print(error.localizedDescription)
+                }
             }
         }
-        loadingScreen()
+        //load = loadingScreen()
     }
 }
 
 //MARK: GETDATA
 extension LoginViewController{
     func fetchToken(username: String, password: String, completion: @escaping (Token?) -> Void) {
-        loginViewModel.getUserToken(username, password) { token in
+        loginViewModel.getUserToken(username, password) { [self] token in
             if let token = token {
                 print("Token: (token)")
                 completion(token)
@@ -55,6 +61,15 @@ extension LoginViewController{
                 print("Token alınamadı.")
                 completion(nil)
             }
+        }
+    }
+}
+//MARK: Seque
+extension LoginViewController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowHomeView"{
+            let destinationVC = segue.destination as! HomeViewController
+            destinationVC.name = "Hoşgeldin " + (name ?? " ")
         }
     }
 }

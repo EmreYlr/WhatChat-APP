@@ -32,6 +32,7 @@ class LoginViewModel {
                     self.token = token
                     DispatchQueue.main.async {
                         completion(token)
+                        
                     }
                 } else {
                     DispatchQueue.main.async {

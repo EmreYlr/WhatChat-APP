@@ -8,15 +8,14 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    var name : String?
     @IBOutlet weak var welcomeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
-        //welcomeLabel.text = "Welcome \()"
-        
+        welcomeLabel.text = name
     }
-    
     @IBAction func singOutButton(_ sender: UIBarButtonItem) {
         
     }

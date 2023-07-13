@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 extension UIViewController{
-    
     func Alert(title: String, alertMessage: String){
         let alert = UIAlertController(title: title, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
         let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel)
@@ -29,17 +28,16 @@ extension UIViewController{
         return alert
     }
     
-    func stopLoader(loader : UIAlertController) {
+    func stopLoader(loader : UIAlertController?) {
         DispatchQueue.main.async {
-            loader.dismiss(animated: true, completion: nil)
+            loader?.dismiss(animated: true, completion: nil)
         }
     }
     
-    func loadingScreen(){
-        let loader = self.loader()
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.stopLoader(loader: loader)
-        }
+    func loadingScreen() -> UIAlertController{
+        return self.loader()
     }
+    
+    
     
 }
