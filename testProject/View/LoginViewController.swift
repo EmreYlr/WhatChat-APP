@@ -11,54 +11,64 @@ import JWTDecode
 
 class LoginViewController: UIViewController{
     //MARK: VARIABLES
+    @IBOutlet weak var registerLabel: UILabel!
+    @IBOutlet weak var forgotPasswordLabel: UILabel!
     var name: String?
     var loginViewModel: LoginViewModel!
-    var load : UIAlertController?
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    lazy var clientTokenServices : ClientTokenService = {
+        return ClientTokenService()
+    }()
+    
+    
     
     //MARK: FUNCTION
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameTextField.text = "yeleremre@hotmail.com"
-        passwordTextField.text = "12345"
+        passwordTextField.isSecureTextEntry = true
+        //usernameTextField.text = "yeleremre@hotmail.com"
+        //passwordTextField.text = "12345"
+        forgotPasswordRecognizer()
         loginViewModel = LoginViewModel()
-        load = nil
+        
     }
 }
 //MARK: Extension-BUTTON
 extension LoginViewController{
     @IBAction func loginClicked(_ sender: UIButton) {
-        guard let username = usernameTextField.text,!username.isEmpty, let password = passwordTextField.text, !password.isEmpty else{
+        guard let email = emailTextField.text,!email.isEmpty, let password = passwordTextField.text, !password.isEmpty else{
             Alert(title: "Error", alertMessage: "Username or password is empty!")
             return
         }
         
-        fetchToken(username: username, password: password) { token in
+        fetchToken(username: email, password: password) { token in
             if let token = token{
                 do{
                     let jwt = try decode(jwt: token.accessToken)
                     self.name = jwt.name! + " " + jwt.surname!
-                    //self.stopLoader(loader: self.load)
                     self.performSegue(withIdentifier: "ShowHomeView", sender: nil)
                 }catch let error{
                     print(error.localizedDescription)
                 }
             }
         }
-        //load = loadingScreen()
+        startLoader()
+        
     }
 }
 
 //MARK: GETDATA
 extension LoginViewController{
     func fetchToken(username: String, password: String, completion: @escaping (Token?) -> Void) {
-        loginViewModel.getUserToken(username, password) { [self] token in
+        loginViewModel.getUserToken(username, password) {token in
             if let token = token {
-                print("Token: (token)")
+                //print("Token: (token)")
+                self.stopLoader()
                 completion(token)
             } else {
-                print("Token alınamadı.")
+                //print("Token alınamadı.")
+                self.stopLoader()
                 completion(nil)
             }
         }
@@ -71,7 +81,29 @@ extension LoginViewController{
             let destinationVC = segue.destination as! HomeViewController
             destinationVC.name = "Hoşgeldin " + (name ?? " ")
         }
+        
     }
+    
+}
+
+//MARK: GestureRecognizer
+extension LoginViewController{
+    func forgotPasswordRecognizer(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
+        forgotPasswordLabel.isUserInteractionEnabled = true
+        forgotPasswordLabel.addGestureRecognizer(tap)
+    }
+    @objc func tapFunction(sender:UITapGestureRecognizer){
+        forgotPasswordLabel.alpha = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.forgotPasswordLabel.alpha = 1.0
+        }
+        self.performSegue(withIdentifier: "showResetPassword", sender: nil)
+    }
+    
+    
+
+    
 }
 
 

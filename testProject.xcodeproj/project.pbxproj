@@ -22,6 +22,9 @@
 		C3C839CE2A5D8A6800FC8F2D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C839CD2A5D8A6800FC8F2D /* RegisterViewController.swift */; };
 		C3C839D02A5D9A9500FC8F2D /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C839CF2A5D9A9500FC8F2D /* RegisterViewModel.swift */; };
 		C3C839D22A5D9EAB00FC8F2D /* ClientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C839D12A5D9EAB00FC8F2D /* ClientViewModel.swift */; };
+		C3CA9A4D2A61C26400C89ADD /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A4C2A61C26400C89ADD /* ResetPasswordViewController.swift */; };
+		C3CA9A4F2A61C68C00C89ADD /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */; };
+		C3CA9A512A61D04800C89ADD /* ClientTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A502A61D04800C89ADD /* ClientTokenService.swift */; };
 		C3EFD94B2A5EC62D0075BCD1 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EFD94A2A5EC62D0075BCD1 /* Services.swift */; };
 		C3EFD94D2A5EDC780075BCD1 /* MutualExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EFD94C2A5EDC780075BCD1 /* MutualExtension.swift */; };
 		C3EFD9502A5EE4F20075BCD1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EFD94F2A5EE4F20075BCD1 /* HomeViewController.swift */; };
@@ -49,6 +52,9 @@
 		C3C839CD2A5D8A6800FC8F2D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C3C839CF2A5D9A9500FC8F2D /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		C3C839D12A5D9EAB00FC8F2D /* ClientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewModel.swift; sourceTree = "<group>"; };
+		C3CA9A4C2A61C26400C89ADD /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		C3CA9A502A61D04800C89ADD /* ClientTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTokenService.swift; sourceTree = "<group>"; };
 		C3EFD94A2A5EC62D0075BCD1 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		C3EFD94C2A5EDC780075BCD1 /* MutualExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutualExtension.swift; sourceTree = "<group>"; };
 		C3EFD94F2A5EE4F20075BCD1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -89,7 +95,6 @@
 				C301169F2A5B36D20045DE7F /* User.swift */,
 				C32715962A5B00EB0018D869 /* Token.swift */,
 				C301169D2A5B345B0045DE7F /* ClientToken.swift */,
-				C3EFD94A2A5EC62D0075BCD1 /* Services.swift */,
 				C30655452A607281009E7CA1 /* RegisteredUser.swift */,
 			);
 			path = Model;
@@ -103,6 +108,7 @@
 				C32715862A5AFDF60018D869 /* LoginViewController.swift */,
 				C3C839CD2A5D8A6800FC8F2D /* RegisterViewController.swift */,
 				C3EFD94F2A5EE4F20075BCD1 /* HomeViewController.swift */,
+				C3CA9A4C2A61C26400C89ADD /* ResetPasswordViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -113,6 +119,7 @@
 				C30F487D2A5D6F52002F0534 /* LoginViewModel.swift */,
 				C3C839CF2A5D9A9500FC8F2D /* RegisterViewModel.swift */,
 				C3C839D12A5D9EAB00FC8F2D /* ClientViewModel.swift */,
+				C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */,
 			);
 			name = "VİewModel";
 			path = "VİewModel";
@@ -143,12 +150,22 @@
 				C30F48822A5D74C7002F0534 /* VİewModel */,
 				C30F48812A5D74BE002F0534 /* View */,
 				C30F48802A5D74B8002F0534 /* Model */,
+				C3C01F7B2A61EF300046F6EE /* Service */,
 				C32715882A5AFDF60018D869 /* Main.storyboard */,
 				C327158B2A5AFDF60018D869 /* Assets.xcassets */,
 				C327158D2A5AFDF60018D869 /* LaunchScreen.storyboard */,
 				C32715902A5AFDF60018D869 /* Info.plist */,
 			);
 			path = testProject;
+			sourceTree = "<group>";
+		};
+		C3C01F7B2A61EF300046F6EE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C3EFD94A2A5EC62D0075BCD1 /* Services.swift */,
+				C3CA9A502A61D04800C89ADD /* ClientTokenService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		C3EFD94E2A5EDE050075BCD1 /* Extension */ = {
@@ -278,11 +295,14 @@
 				C30F487E2A5D6F52002F0534 /* LoginViewModel.swift in Sources */,
 				C32715872A5AFDF60018D869 /* LoginViewController.swift in Sources */,
 				C32715832A5AFDF60018D869 /* AppDelegate.swift in Sources */,
+				C3CA9A4D2A61C26400C89ADD /* ResetPasswordViewController.swift in Sources */,
 				C3EFD94D2A5EDC780075BCD1 /* MutualExtension.swift in Sources */,
 				C3EFD94B2A5EC62D0075BCD1 /* Services.swift in Sources */,
 				C3C839CE2A5D8A6800FC8F2D /* RegisterViewController.swift in Sources */,
+				C3CA9A4F2A61C68C00C89ADD /* ResetPasswordViewModel.swift in Sources */,
 				C30116A02A5B36D20045DE7F /* User.swift in Sources */,
 				C32715852A5AFDF60018D869 /* SceneDelegate.swift in Sources */,
+				C3CA9A512A61D04800C89ADD /* ClientTokenService.swift in Sources */,
 				C301169E2A5B345B0045DE7F /* ClientToken.swift in Sources */,
 				C30655442A5F1FFE009E7CA1 /* JWT.swift in Sources */,
 				C3C839D22A5D9EAB00FC8F2D /* ClientViewModel.swift in Sources */,
@@ -444,6 +464,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,6 +493,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

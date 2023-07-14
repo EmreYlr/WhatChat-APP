@@ -3,4 +3,54 @@
    uuid = "A71B9437-67E2-43A6-AD0D-079278AD0E58"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C9E6CAE3-F744-42D3-B2BF-DD1549844AAA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "testProject/Model/ClientTokenService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "init()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C9E6CAE3-F744-42D3-B2BF-DD1549844AAA - 601f8741e31f9a69"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "testProject.ClientTokenService.__allocating_init() -&gt; testProject.ClientTokenService"
+                  moduleName = "testProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emre/Desktop/testProject/testProject/Model/ClientTokenService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "C9E6CAE3-F744-42D3-B2BF-DD1549844AAA - ef6320a881f28eef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "testProject.ClientTokenService.init() -&gt; testProject.ClientTokenService"
+                  moduleName = "testProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emre/Desktop/testProject/testProject/Model/ClientTokenService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "10"
+                  endingLineNumber = "10"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

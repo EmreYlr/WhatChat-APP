@@ -8,51 +8,74 @@
 import Foundation
 import Alamofire
 
-class RegisterViewModel{
-    let services = Services()
+final class RegisterViewModel{
+    private let services : Services
+    private let clientTokenService: ClientTokenService
     var statusCode : Int?
     var registerUser: RegisterUser?
     
-    func registerUser(_ token: String, _ username: String, _ surname: String, _ email: String, _ password: String, completion: @escaping(Int?)->(Void)){
+    init(services: Services = Services(), clientTokenService: ClientTokenService = ClientTokenService()) {
+        self.services = services
+        self.clientTokenService = clientTokenService
+    }
+    
+    func registerUser(_ username: String, _ surname: String, _ email: String, _ password: String, completion: @escaping(Int?)->(Void)){
         
         let user = User(enabled: true, firstName: username , lastName: surname, email: email, credentials: [Credential(type: "password", value: password, temporary: false)])
-        let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(token)",
+        let headers = [
             "Content-Type": "application/json"
         ]
         let url = URL(string: "\(services.urlAdress)/admin/realms/test_realm/users")!
-        
-        DispatchQueue.global(qos: .background).async {
-            AF.request(url, method: .post, parameters: user,encoder: JSONParameterEncoder.default, headers: headers).responseData{ response in
-                if let response = response.response?.statusCode{
-                    self.statusCode = response
-                    DispatchQueue.main.async {
-                        completion(response)
-                    }
+
+        clientTokenService.requestEncoder(url: url, method: .post,parameters: user,headers: headers) { response in
+            if let response = response?.response?.statusCode{
+                self.statusCode = response
+                DispatchQueue.main.async {
+                    completion(response)
                 }
             }
         }
     }
     
-    func userIsVerified(email: String, token: String, completion: @escaping (Bool) -> Void) {
-        let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(token)",
+    
+
+    func userInformation(email: String, completion: @escaping (RegisterUser?) -> Void) {
+        let headers = [
             "Content-Type": "application/json"
         ]
         let url = URL(string: "\(services.urlAdress)/admin/realms/test_realm/users/?email=\(email)")!
-        DispatchQueue.global(qos: .background).async {
-            AF.request(url, method: .get, headers: headers).responseDecodable(of: [RegisterUser].self) { response in
-                if let registerUser = response.value {
-                    print(registerUser[0].emailVerified)
-                    DispatchQueue.main.async {
-                        completion(registerUser[0].emailVerified)
-                    }
-                    
-                } else {
-                    DispatchQueue.main.async {
-                        completion(false)
-                    }
-                    
+        
+        clientTokenService.requestDecodable(url: url, method: .get, headers: headers) { (user: [RegisterUser]?) in
+            if let registerUser = user{
+                print(registerUser[0])
+                DispatchQueue.main.async {
+                    completion(registerUser[0])
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+        
+            
+    }
+    
+    
+    func sendEmail(registerUser: RegisterUser){
+        let headers = [
+            "Content-Type": "application/json"
+        ]
+        let url = URL(string: "\(services.urlAdress)/admin/realms/test_realm/users/\(registerUser.id)/send-verify-email")!
+        clientTokenService.request(url: url, method: .put, headers: headers) { response
+            in
+            if let response = response{
+                debugPrint(response)
+                switch response.result {
+                case .success:
+                    print("E-posta doğrulama isteği gönderildi.")
+                case let .failure(error):
+                    print("E-posta doğrulama isteği gönderilirken hata oluştu: \(error)")
                 }
             }
         }

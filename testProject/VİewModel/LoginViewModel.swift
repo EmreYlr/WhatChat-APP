@@ -7,9 +7,9 @@
 
 import Alamofire
 import JWTDecode
-class LoginViewModel {
-    let services = Services()
+class LoginViewModel{
     var token: Token?
+    var services: Services!
     
     func getUserToken(_ username: String, _ password: String, completion: @escaping (Token?) -> Void) {
         let headers: HTTPHeaders = [

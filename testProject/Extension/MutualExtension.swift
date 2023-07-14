@@ -17,7 +17,7 @@ extension UIViewController{
         
     }
     
-    func loader() -> UIAlertController {
+    func startLoader(){
         let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         loadingIndicator.hidesWhenStopped = true
@@ -25,19 +25,16 @@ extension UIViewController{
         loadingIndicator.startAnimating()
         alert.view.addSubview(loadingIndicator)
         present(alert, animated: true, completion: nil)
-        return alert
     }
     
-    func stopLoader(loader : UIAlertController?) {
-        DispatchQueue.main.async {
-            loader?.dismiss(animated: true, completion: nil)
+    func stopLoader() {
+        if let appDelegate = UIApplication.shared.delegate,
+           let window = appDelegate.window ?? UIApplication.shared.windows.first(where: { $0.isKeyWindow }),
+           let presentedViewController = window.rootViewController?.presentedViewController {
+               if let alert = presentedViewController as? UIAlertController {
+                   alert.dismiss(animated: true, completion: nil)
+               }
         }
     }
-    
-    func loadingScreen() -> UIAlertController{
-        return self.loader()
-    }
-    
-    
-    
+
 }
