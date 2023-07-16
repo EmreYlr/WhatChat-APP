@@ -6,15 +6,12 @@
 //
 import Foundation
 import Alamofire
-class ClientTokenService{
+final class ClientTokenService{
     let services: Services = Services()
-    var clientToken: ClientToken?
-    
+    private var clientToken: ClientToken?
     init() {
-        debugPrint("Token Defaulttan alınıyor")
         self.clientToken = getClientTokenFromUserDefaults() ?? nil
         if clientToken == nil{
-            debugPrint("Token Bulunamadı çekiliyor")
             getClientToken { token in
                 self.setClientTokenFromUserDefaults(clientToken: token ?? nil)
                 self.clientToken = token
@@ -58,93 +55,7 @@ class ClientTokenService{
         }
     }
     
-    func request(url: URL ,method: HTTPMethod, headers: Dictionary<String, String>, completion: @escaping(AFDataResponse<Data?>?) -> Void){
-        var authHeaders: HTTPHeaders = [
-            "Authorization": "Bearer \(clientToken!.accessToken)",
-        ]
-        for temp in headers{
-            authHeaders.update(name: temp.key, value: temp.value)
-        }
-        
-        AF.request(url, method: method, headers: authHeaders).response { response in
-            switch response.response?.statusCode{
-            case 401:
-                print("Bağlantı Hatası")
-                self.getClientToken {clientToken in
-                    if let clientToken = clientToken{
-                        self.setClientTokenFromUserDefaults(clientToken: clientToken)
-                    }
-                }
-                if self.getClientTokenFromUserDefaults() == nil{
-                    self.request(url: url, method: method, headers: headers) { data in
-                        completion(response)
-                    }
-                }
-                break
-            default:
-                completion(response)
-                break
-            }
-        }
-    }
-    func requestEncoder<T: Encodable>(url: URL ,method: HTTPMethod,parameters: T, headers: Dictionary<String, String>, completion: @escaping(AFDataResponse<Data?>?) -> Void){
-        var authHeaders: HTTPHeaders = [
-            "Authorization": "Bearer \(clientToken!.accessToken)",
-        ]
-        for temp in headers{
-            authHeaders.update(name: temp.key, value: temp.value)
-        }
-        
-        AF.request(url, method: method,parameters: parameters,encoder: JSONParameterEncoder.default, headers: authHeaders).response { response in
-            switch response.response?.statusCode{
-            case 401:
-                print("Bağlantı Hatası")
-                self.getClientToken {clientToken in
-                    if let clientToken = clientToken{
-                        self.setClientTokenFromUserDefaults(clientToken: clientToken)
-                    }
-                }
-                if self.getClientTokenFromUserDefaults() == nil{
-                    self.request(url: url, method: method, headers: headers) { data in
-                        completion(response)
-                    }
-                }
-                break
-            default:
-                completion(response)
-                break
-            }
-        }
-    }
-    func requestDecodable<T: Decodable>(url: URL ,method: HTTPMethod, headers: Dictionary<String, String>,completion: @escaping(T?) -> Void){
-        var authHeaders: HTTPHeaders = [
-            "Authorization": "Bearer \(clientToken!.accessToken)",
-        ]
-        for temp in headers{
-            authHeaders.update(name: temp.key, value: temp.value)
-        }
-        
-        AF.request(url, method: method, headers: authHeaders).responseDecodable(of: T.self){ response in
-            switch response.response?.statusCode{
-            case 401:
-                print("Bağlantı Hatası")
-                self.getClientToken {clientToken in
-                    if let clientToken = clientToken{
-                        self.setClientTokenFromUserDefaults(clientToken: clientToken)
-                    }
-                }
-                if self.getClientTokenFromUserDefaults() == nil{
-                    self.request(url: url, method: method, headers: headers) { data in
-                        completion(response.value)
-                    }
-                }
-                break
-            default:
-                completion(response.value)
-                break
-            }
-        }
-    }
+    
 }
 
 

@@ -8,9 +8,9 @@
 import Foundation
 import Alamofire
 
-class ClientViewModel{
-    var clientToken : ClientToken?
-    var services: Services!
+final class ClientViewModel{
+    private var clientToken : ClientToken?
+    private var services: Services = Services()
     func getClientToken(completion: @escaping(ClientToken?) -> (Void)){
         let headers: HTTPHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"

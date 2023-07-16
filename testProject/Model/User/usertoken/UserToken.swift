@@ -1,6 +1,6 @@
 import Foundation
 
-struct Token: Codable {
+struct UserToken: Codable {
     let accessToken: String
     let expiresIn, refreshExpiresIn: Int
     let refreshToken, tokenType: String

@@ -10,4 +10,5 @@ import Foundation
 class Services{
     final let urlAdress = "https://keycloakflex.azurewebsites.net"
     final let clientSecret = "EdPuHA6EeczD283BY3bkoB0tW6tY2kOU"
+    final let clientId = "ios-test"
 }

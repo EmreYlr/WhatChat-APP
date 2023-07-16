@@ -20,9 +20,7 @@ class LoginViewController: UIViewController{
     lazy var clientTokenServices : ClientTokenService = {
         return ClientTokenService()
     }()
-    
-    
-    
+
     //MARK: FUNCTION
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,14 +58,12 @@ extension LoginViewController{
 
 //MARK: GETDATA
 extension LoginViewController{
-    func fetchToken(username: String, password: String, completion: @escaping (Token?) -> Void) {
+    func fetchToken(username: String, password: String, completion: @escaping (UserToken?) -> Void) {
         loginViewModel.getUserToken(username, password) {token in
             if let token = token {
-                //print("Token: (token)")
                 self.stopLoader()
                 completion(token)
             } else {
-                //print("Token alınamadı.")
                 self.stopLoader()
                 completion(nil)
             }
@@ -99,11 +95,7 @@ extension LoginViewController{
             self.forgotPasswordLabel.alpha = 1.0
         }
         self.performSegue(withIdentifier: "showResetPassword", sender: nil)
-    }
-    
-    
-
-    
+    }    
 }
 
 
