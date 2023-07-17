@@ -30,7 +30,7 @@ class RegisterViewController: UIViewController{
     
     @IBAction func registerButtonClicked(_ sender: UIButton) {
         guard let name = nameTextField.text,!name.isEmpty,let surname = surnameTextField.text, !surname.isEmpty, let password = passwordTextField.text, !password.isEmpty, let email = emailTextField.text, !email.isEmpty else{
-            Alert(title: "Error", alertMessage: "Username or password is empty!")
+            Alert(title: "Error", alertMessage: "Username,password,email or password is empty!")
             return
         }
         registerUser(name: name, surname: surname, email: email, password: password)
@@ -44,13 +44,13 @@ class RegisterViewController: UIViewController{
             if let statusCode = statusCode{
                 switch statusCode{
                 case 400:
-                    print("Format Hatalı Eposta")
+                    self.Alert(title: "Error!", alertMessage: "Invalid format email!")
                     break
                 case 401:
-                    print("Bağlantı Hatası")
+                    self.Alert(title: "Error!", alertMessage: "Connection Error!")
                     break
                 case 409:
-                    print("Bu Eposta Zaten Sistemde Kayıtlı")
+                    self.Alert(title: "Error!", alertMessage: "This email is already registered in the system")
                     break
                 case 201:
                     print("Kayıt Başarılı")
@@ -58,7 +58,7 @@ class RegisterViewController: UIViewController{
                     self.emailVerifiedScreen(message: nil)
                     break
                 default:
-                    print("Beklenmedik Bir Hata Oluştu. Hata kodu \(statusCode)")
+                    self.Alert(title: "Error!", alertMessage: "An unexpected error has occurred. Error Code:\(statusCode)")
                     break
                 }
             }

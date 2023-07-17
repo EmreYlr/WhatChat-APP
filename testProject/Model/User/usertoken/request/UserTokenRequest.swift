@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct UserTokenRequest: Codable {
+class UserTokenRequest: Codable {
     let service: Services = Services()
     let username, password,clientId,clientSecret: String
     let grantType: GrantType

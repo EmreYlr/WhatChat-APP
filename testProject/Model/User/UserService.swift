@@ -56,6 +56,9 @@ class UserService{
             }
         }
     }
+    
+    
+    
     func requestDecodable<T: Codable>(url: URL ,method: HTTPMethod,parameters: T? = nil, headers: Dictionary<String, String>,completion: @escaping(T?) -> Void){
         let authHeaders = userServiceMutualHeaders(headers: headers)
         AF.request(url, method: method, parameters: parameters, headers: authHeaders).responseDecodable(of: T.self){ response in
@@ -75,6 +78,8 @@ class UserService{
             }
         }
     }
+ 
+    
     
     func userInformation(email: String, completion: @escaping (RegisterUser?) -> Void) {
         let headers = [

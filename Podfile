@@ -6,6 +6,7 @@ target 'testProject' do
   use_frameworks!
   pod 'Alamofire'
   pod 'JWTDecode', '~> 3.1'
+  pod 'Socket.IO-Client-Swift', '~> 16.0.1'
   # Pods for testProject
 
 end

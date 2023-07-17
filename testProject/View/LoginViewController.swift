@@ -11,6 +11,9 @@ import JWTDecode
 
 class LoginViewController: UIViewController{
     //MARK: VARIABLES
+    var userToken: UserToken?
+    var userTokenService: UserTokenService = UserTokenService()
+    let user: User? = nil
     @IBOutlet weak var registerLabel: UILabel!
     @IBOutlet weak var forgotPasswordLabel: UILabel!
     var name: String?
@@ -24,12 +27,12 @@ class LoginViewController: UIViewController{
     //MARK: FUNCTION
     override func viewDidLoad() {
         super.viewDidLoad()
+//        if userTokenService.getUserTokenFromUserDefaults() != nil{
+//            self.performSegue(withIdentifier: "ShowHomeView", sender: nil)
+//        }
         passwordTextField.isSecureTextEntry = true
-        //usernameTextField.text = "yeleremre@hotmail.com"
-        //passwordTextField.text = "12345"
         forgotPasswordRecognizer()
         loginViewModel = LoginViewModel()
-        
     }
 }
 //MARK: Extension-BUTTON
@@ -45,10 +48,16 @@ extension LoginViewController{
                 do{
                     let jwt = try decode(jwt: token.accessToken)
                     self.name = jwt.name! + " " + jwt.surname!
+                    self.userToken = token
+                    self.userTokenService.setUserTokenFromUserDefaults(userToken: token)
                     self.performSegue(withIdentifier: "ShowHomeView", sender: nil)
                 }catch let error{
                     print(error.localizedDescription)
                 }
+            }
+            else{
+                self.Alert(title: "Error!", alertMessage: "Username or password wrong!")
+                return
             }
         }
         startLoader()
@@ -75,11 +84,10 @@ extension LoginViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowHomeView"{
             let destinationVC = segue.destination as! HomeViewController
-            destinationVC.name = "Hoşgeldin " + (name ?? " ")
+            //destinationVC.name = "Hoşgeldin " + (name ?? " ")
+            destinationVC.userToken = userTokenService.getUserTokenFromUserDefaults()
         }
-        
     }
-    
 }
 
 //MARK: GestureRecognizer
