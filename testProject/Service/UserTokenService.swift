@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import JWTDecode
 final class UserTokenService{
     let services: Services = Services()
     private var userToken: UserToken?
@@ -28,5 +29,14 @@ final class UserTokenService{
         }
         return nil
     }
-
+    
+    func getJWT() -> JWT?{
+        do{
+            let jwt = try decode(jwt: getUserTokenFromUserDefaults()!.accessToken)
+            return jwt
+        }catch let error{
+            print(error.localizedDescription)
+            return nil
+        }
+    }
 }

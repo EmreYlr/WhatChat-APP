@@ -56,12 +56,25 @@ class UserService{
             }
         }
     }
-    
-    
-    
-    func requestDecodable<T: Codable>(url: URL ,method: HTTPMethod,parameters: T? = nil, headers: Dictionary<String, String>,completion: @escaping(T?) -> Void){
+
+    func requestDecodable<T: Codable, R: Codable>(url: URL ,method: HTTPMethod,parameters: R?, headers: Dictionary<String, String>,completion: @escaping(T?) -> Void){
         let authHeaders = userServiceMutualHeaders(headers: headers)
         AF.request(url, method: method, parameters: parameters, headers: authHeaders).responseDecodable(of: T.self){ response in
+            switch response.response?.statusCode{
+            case 401:
+                print("Bağlantı Hatası")
+                completion(nil)
+                break
+            default:
+                completion(response.value)
+                break
+            }
+        }
+    }
+    
+    func requestDecodable<T: Codable>(url: URL ,method: HTTPMethod, headers: Dictionary<String, String>,completion: @escaping(T?) -> Void){
+        let authHeaders = userServiceMutualHeaders(headers: headers)
+        AF.request(url, method: method, headers: authHeaders).responseDecodable(of: T.self){ response in
             switch response.response?.statusCode{
             case 401:
                 print("Bağlantı Hatası")
@@ -86,13 +99,12 @@ class UserService{
             "Content-Type": "application/json"
         ]
         let url = URL(string: "\(services.urlAdress)/admin/realms/test_realm/users/?email=\(email)")!
-        requestDecodable(url: url, method: .get, headers: headers) { (user: [RegisterUser]?) in
+        requestDecodable(url: url, method: .get,headers: headers) { (user: [RegisterUser]?) in
             if let registerUser = user{
                 completion(registerUser[0])
             }else{
                 completion(nil)
             }
-                
         }
     }
     
