@@ -31,31 +31,40 @@ class MessageTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        addSubview(bubbleBackgroundView)
+        addSubview(messageLabel)
         backgroundColor = .clear
         bubbleBackgroundView.layer.cornerRadius = 12
         bubbleBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(bubbleBackgroundView)
         
-        addSubview(messageLabel)
+        
+        let maxWidth = UIScreen.main.bounds.width - 120
+        let widthConstraint = messageLabel.widthAnchor.constraint(lessThanOrEqualToConstant: maxWidth)
+        widthConstraint.isActive = true
+        widthConstraint.priority = .required - 1
+        widthConstraint.isActive = true
+        
         messageLabel.numberOfLines = 0
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let constraints = [
-            messageLabel.topAnchor.constraint (equalTo: topAnchor, constant: 16),
-            messageLabel.bottomAnchor.constraint (equalTo: bottomAnchor, constant: -32), messageLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 250),
+            messageLabel.topAnchor.constraint(equalTo: topAnchor, constant: 24),
+            messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
             
-            bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant:-16) ,
-            bubbleBackgroundView.leadingAnchor.constraint(equalTo:messageLabel.leadingAnchor,constant: -16),
-            bubbleBackgroundView.bottomAnchor.constraint(equalTo:messageLabel.bottomAnchor,constant: 16),
-            bubbleBackgroundView.trailingAnchor.constraint(equalTo:messageLabel.trailingAnchor,constant: 16),
+            bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -16),
+            bubbleBackgroundView.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor, constant: -16),
+            bubbleBackgroundView.bottomAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 16),
+            bubbleBackgroundView.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor, constant: 16),
             
         ]
+        NSLayoutConstraint.activate(constraints)
+        
         leadingConstraint = messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 32)
         leadingConstraint.isActive = false
         trailingConstraint = messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32)
         trailingConstraint.isActive = true
 
-        NSLayoutConstraint.activate(constraints)
+        
         
     }
     
