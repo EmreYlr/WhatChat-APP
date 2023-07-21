@@ -12,12 +12,10 @@ class HomeViewModel{
     let userTokenService: UserTokenService = UserTokenService()
     let service: Services = Services()
     
-    //JWT yerine arkada user at
-    
     func logoutUser(){
-        if let jwt = userTokenService.getJWT(){
+        if let user = userTokenService.getLoggedUser(){
             let headers = ["Content-Type": "application/json"]
-            let url = URL(string: "\(service.urlAdress)/admin/realms/test_realm/users/\(jwt.userId!)/logout")!
+            let url = URL(string: "\(service.urlAdress)/admin/realms/test_realm/users/\(user.userId)/logout")!
             userService.request(url: url, method: .post, headers: headers) { response in
                 if let response = response{
                     switch response.result {

@@ -20,6 +20,7 @@ class RegisterViewController: UIViewController{
     @IBOutlet weak var surnameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var phoneNoTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,17 +30,22 @@ class RegisterViewController: UIViewController{
     //MARK: FUNCTION
     
     @IBAction func registerButtonClicked(_ sender: UIButton) {
-        guard let name = nameTextField.text,!name.isEmpty,let surname = surnameTextField.text, !surname.isEmpty, let password = passwordTextField.text, !password.isEmpty, let email = emailTextField.text, !email.isEmpty else{
-            Alert(title: "Error", alertMessage: "Username,password,email or password is empty!")
+        guard let name = nameTextField.text,!name.isEmpty,let surname = surnameTextField.text, !surname.isEmpty, let password = passwordTextField.text, !password.isEmpty, let email = emailTextField.text, !email.isEmpty, let phoneNo = phoneNoTextField.text, !phoneNo.isEmpty else{
+            Alert(title: "Error", alertMessage: "Username,password,email,password or phone no is empty!")
             return
         }
-        registerUser(name: name, surname: surname, email: email, password: password)
+        guard let phoneNo = phoneNoTextField.text, phoneNo.count == 10 else{
+            Alert(title: "Error", alertMessage: "Enter your phone number as 10 digits without leading zero.")
+            
+            return
+        }
+        registerUser(name: name, surname: surname, email: email, password: password, phoneNo: phoneNo)
         
     }
     
-    func registerUser(name: String, surname: String, email: String, password:String){
+    func registerUser(name: String, surname: String, email: String, password:String, phoneNo: String){
         startLoader()
-        user = User(enabled: true, firstName: name, lastName: surname, email: email, credentials: [Credential(type: "password", value: password, temporary: false)])
+        user = User(enabled: true, firstName: name, lastName: surname, email: email,username: phoneNo, credentials: [Credential(type: "password", value: password, temporary: false)])
         self.registerViewModel.registerUser(user: user!) { statusCode in
             if let statusCode = statusCode{
                 switch statusCode{
@@ -50,7 +56,7 @@ class RegisterViewController: UIViewController{
                     self.Alert(title: "Error!", alertMessage: "Connection Error!")
                     break
                 case 409:
-                    self.Alert(title: "Error!", alertMessage: "This email is already registered in the system")
+                    self.Alert(title: "Error!", alertMessage: "This email or phone no is already registered in the system")
                     break
                 case 201:
                     print("Kayıt Başarılı")
@@ -63,7 +69,7 @@ class RegisterViewController: UIViewController{
                 }
             }
         }
-    self.stopLoader()
+        self.stopLoader()
     }
 }
 extension RegisterViewController{
@@ -82,7 +88,7 @@ extension RegisterViewController{
                 }
             }
         }
-                                                   
+        
         let sentAgainButton = UIAlertAction(title: "Sent Again", style: .default){_ in
             self.emailVerifiedScreen(message: "Email sent again. Please check again.")
             self.sendEmail()
@@ -95,7 +101,7 @@ extension RegisterViewController{
     func sendEmail(){
         registerViewModel.sendEmail(email: emailTextField.text!)
     }
-
+    
     func backLoginScreen(){
         if let loginVC = self.navigationController?.viewControllers.first as? LoginViewController{
             loginVC.emailTextField.text = emailTextField.text

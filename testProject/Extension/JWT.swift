@@ -6,6 +6,9 @@
 //
 import JWTDecode
 extension JWT {
+    var username: String?{
+        return self["preferred_username"].string
+    }
     var email: String? {
         return self["email"].string
     }
@@ -16,10 +19,9 @@ extension JWT {
         return self["family_name"].string
     }
     var userId: String?{
-        return self["sid"].string
+        return self["sub"].string
     }
     var emailVerified: Bool?{
         return self["email_verified"].boolean
     }
-    
 }

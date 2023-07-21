@@ -8,7 +8,7 @@
 import Foundation
 struct User: Codable {
     let enabled: Bool
-    let firstName, lastName, email: String
+    let firstName, lastName, email, username: String
     let credentials: [Credential]
 }
 

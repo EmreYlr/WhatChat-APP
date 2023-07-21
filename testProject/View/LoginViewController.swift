@@ -32,14 +32,13 @@ class LoginViewController: UIViewController{
         forgotPasswordRecognizer()
     }
 }
-//MARK: Extension-BUTTON
+//MARK: BUTTON
 extension LoginViewController{
     @IBAction func loginClicked(_ sender: UIButton) {
         guard let email = emailTextField.text,!email.isEmpty, let password = passwordTextField.text, !password.isEmpty else{
             Alert(title: "Error", alertMessage: "Username or password is empty!")
             return
         }
-        
         checkUser(username: email, password: password) { check in
             if check == true{
                 self.performSegue(withIdentifier: "ShowHomeView", sender: nil)

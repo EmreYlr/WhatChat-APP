@@ -30,10 +30,11 @@ final class UserTokenService{
         return nil
     }
     
-    func getJWT() -> JWT?{
+    func getLoggedUser() -> LoggedUser?{
         do{
             let jwt = try decode(jwt: getUserTokenFromUserDefaults()!.accessToken)
-            return jwt
+            let loggedUser = LoggedUser(userId: jwt.userId!, username: jwt.username!, name: jwt.name!, surname: jwt.surname!, email: jwt.email!, emailVerified: jwt.emailVerified!)
+            return loggedUser
         }catch let error{
             print(error.localizedDescription)
             return nil

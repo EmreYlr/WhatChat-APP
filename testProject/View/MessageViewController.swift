@@ -72,19 +72,16 @@ class MessageViewController: UIViewController{
         messageTableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
     }
     
-
 }
 
 //MARK: Button
 extension MessageViewController{
     @IBAction func sendButtonPressed(_ sender: UIButton) {
         if let messageText = messageTextField.text, !messageText.isEmpty {
-            sendMessage(text: messageTextField.text!, isIncoming: false)
+            sendMessage(text: messageText, isIncoming: false)
             messageTextField.text = ""
         }
     }
-    
-    
 }
 
 //MARK: TABLEVIEW
@@ -96,8 +93,8 @@ extension MessageViewController: UITableViewDataSource, UITableViewDelegate{
         if let firstMessageInSection = chatMessages [section].first {
             let dateFormatter = DateFormatter ()
             dateFormatter.dateFormat="dd/MM/yyyy"
-            let dateString = dateFormatter.string (from: firstMessageInSection .date)
-            let label = DateHeaderLabel ( )
+            let dateString = dateFormatter.string (from: firstMessageInSection.date)
+            let label = DateHeaderLabel()
             label.text = dateString
             let containerView = UIView()
             containerView.addSubview(label)

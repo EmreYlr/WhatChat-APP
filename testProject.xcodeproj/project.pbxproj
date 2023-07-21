@@ -32,6 +32,7 @@
 		C3C839CE2A5D8A6800FC8F2D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C839CD2A5D8A6800FC8F2D /* RegisterViewController.swift */; };
 		C3C839D02A5D9A9500FC8F2D /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C839CF2A5D9A9500FC8F2D /* RegisterViewModel.swift */; };
 		C3C839D22A5D9EAB00FC8F2D /* ClientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C839D12A5D9EAB00FC8F2D /* ClientViewModel.swift */; };
+		C3C939A12A6AB8190099D914 /* LoggedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C939A02A6AB8190099D914 /* LoggedUser.swift */; };
 		C3CA9A4D2A61C26400C89ADD /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A4C2A61C26400C89ADD /* ResetPasswordViewController.swift */; };
 		C3CA9A4F2A61C68C00C89ADD /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */; };
 		C3CA9A512A61D04800C89ADD /* ClientTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A502A61D04800C89ADD /* ClientTokenService.swift */; };
@@ -72,6 +73,7 @@
 		C3C839CD2A5D8A6800FC8F2D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C3C839CF2A5D9A9500FC8F2D /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		C3C839D12A5D9EAB00FC8F2D /* ClientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewModel.swift; sourceTree = "<group>"; };
+		C3C939A02A6AB8190099D914 /* LoggedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedUser.swift; sourceTree = "<group>"; };
 		C3CA9A4C2A61C26400C89ADD /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		C3CA9A502A61D04800C89ADD /* ClientTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTokenService.swift; sourceTree = "<group>"; };
@@ -112,11 +114,12 @@
 		C30F48802A5D74B8002F0534 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C3C9399E2A6AB76B0099D914 /* Client */,
 				C32D60222A64628E006ACAEE /* User */,
-				C301169D2A5B345B0045DE7F /* ClientToken.swift */,
 				C30655452A607281009E7CA1 /* RegisteredUser.swift */,
 				C3B7B7A42A6840A500C6257E /* ChatMessage.swift */,
 				C3B7B7A62A6841A800C6257E /* UserMessageProfile.swift */,
+				C3C939A02A6AB8190099D914 /* LoggedUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -126,8 +129,8 @@
 			children = (
 				C32715862A5AFDF60018D869 /* LoginViewController.swift */,
 				C3C839CD2A5D8A6800FC8F2D /* RegisterViewController.swift */,
-				C3EFD94F2A5EE4F20075BCD1 /* HomeViewController.swift */,
 				C3CA9A4C2A61C26400C89ADD /* ResetPasswordViewController.swift */,
+				C3EFD94F2A5EE4F20075BCD1 /* HomeViewController.swift */,
 				C3B7B79E2A68137500C6257E /* MessageViewController.swift */,
 			);
 			path = View;
@@ -136,9 +139,9 @@
 		C30F48822A5D74C7002F0534 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C3C839D12A5D9EAB00FC8F2D /* ClientViewModel.swift */,
 				C30F487D2A5D6F52002F0534 /* LoginViewModel.swift */,
 				C3C839CF2A5D9A9500FC8F2D /* RegisterViewModel.swift */,
-				C3C839D12A5D9EAB00FC8F2D /* ClientViewModel.swift */,
 				C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */,
 				C39BDCBF2A658DDA00305CEE /* HomeViewModel.swift */,
 			);
@@ -185,9 +188,9 @@
 		C32D60222A64628E006ACAEE /* User */ = {
 			isa = PBXGroup;
 			children = (
-				C32D60232A64629F006ACAEE /* usertoken */,
 				C301169F2A5B36D20045DE7F /* User.swift */,
-				C32D601C2A642ACD006ACAEE /* UserService.swift */,
+				C3C9399D2A6AB7420099D914 /* UserService */,
+				C32D60232A64629F006ACAEE /* usertoken */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -240,10 +243,34 @@
 			isa = PBXGroup;
 			children = (
 				C3EFD94A2A5EC62D0075BCD1 /* Services.swift */,
-				C39BDCC32A659CBF00305CEE /* UserTokenService.swift */,
-				C3CA9A502A61D04800C89ADD /* ClientTokenService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		C3C9399D2A6AB7420099D914 /* UserService */ = {
+			isa = PBXGroup;
+			children = (
+				C32D601C2A642ACD006ACAEE /* UserService.swift */,
+				C39BDCC32A659CBF00305CEE /* UserTokenService.swift */,
+			);
+			path = UserService;
+			sourceTree = "<group>";
+		};
+		C3C9399E2A6AB76B0099D914 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				C3C9399F2A6AB7760099D914 /* ClientService */,
+				C301169D2A5B345B0045DE7F /* ClientToken.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		C3C9399F2A6AB7760099D914 /* ClientService */ = {
+			isa = PBXGroup;
+			children = (
+				C3CA9A502A61D04800C89ADD /* ClientTokenService.swift */,
+			);
+			path = ClientService;
 			sourceTree = "<group>";
 		};
 		C3EFD94E2A5EDE050075BCD1 /* Extension */ = {
@@ -396,6 +423,7 @@
 				C32D601D2A642ACD006ACAEE /* UserService.swift in Sources */,
 				C3C839D22A5D9EAB00FC8F2D /* ClientViewModel.swift in Sources */,
 				C3C839D02A5D9A9500FC8F2D /* RegisterViewModel.swift in Sources */,
+				C3C939A12A6AB8190099D914 /* LoggedUser.swift in Sources */,
 				C3B7B79B2A6804CE00C6257E /* UserTableViewCell.swift in Sources */,
 				C30655462A607281009E7CA1 /* RegisteredUser.swift in Sources */,
 				C3EFD9502A5EE4F20075BCD1 /* HomeViewController.swift in Sources */,

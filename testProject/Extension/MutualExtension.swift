@@ -14,7 +14,6 @@ extension UIViewController{
         let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel)
         alert.addAction(okButton)
         self.present(alert, animated: true)
-        
     }
     
     func startLoader(){

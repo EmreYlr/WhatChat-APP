@@ -13,7 +13,7 @@ class LoginViewModel{
     private var userService: UserService = UserService()
     private var userTokenService: UserTokenService = UserTokenService()
     private var services: Services = Services()
-    
+    //TODO: GİRİŞ YAPARKEN EMAİL ONAYLI MI KONTROL ET
     func checkUser(_ username: String, _ password: String, completion: @escaping (Bool?) -> Void) {
         let headers = [
             "Content-Type": "application/x-www-form-urlencoded"
@@ -36,23 +36,6 @@ class LoginViewModel{
             }
 
         }
-
-        /*
-        DispatchQueue.global(qos: .background).async {
-            AF.request(url, method: .post, parameters: user, headers: headers).responseDecodable(of: UserToken.self) { response in
-                if let token = response.value {
-                    self.token = token
-                    DispatchQueue.main.async {
-                        completion(token)
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        completion(nil)
-                    }
-                }
-            }
-        }
-         */
          
     }
 }
