@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     let userTokenService: UserTokenService = UserTokenService()
     let homeViewModel: HomeViewModel = HomeViewModel()
     @IBOutlet weak var chatTableView: UITableView!
+    let addButton = UIButton()
     fileprivate let cellId = "userCell"
     
     
@@ -32,12 +33,14 @@ class HomeViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: false)
         chatTableView.dataSource = self
         chatTableView.delegate = self
+        addUserButton()
         manager.setConfigs([.connectParams(["room": userTokenService.getLoggedUser()!.userId])])
-        print(userTokenService.getLoggedUser()!.userId)
         socket = manager.defaultSocket
         addHandler()
         socket.connect()
     }
+    
+    
 }
 //MARK: Button
 extension HomeViewController{
@@ -47,6 +50,25 @@ extension HomeViewController{
         //        socket.disconnect()
         backLoginScreen()
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func addUserButton(){
+        addButton.setImage(UIImage(systemName: "ellipsis.bubble"), for: .normal)
+        addButton.imageView?.tintColor = .white
+        addButton.backgroundColor = UIColor.systemGreen
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        view.addSubview(addButton)
+        
+        addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+        addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
+        addButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        addButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        addButton.layer.cornerRadius = 25
+    }
+    
+    @objc func addButtonTapped(){
+        print("test")
     }
     
 }

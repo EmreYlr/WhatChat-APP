@@ -65,7 +65,7 @@ extension LoginViewController{
 extension LoginViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowHomeView"{
-            let destinationVC = segue.destination as! HomeViewController
+            //let destinationVC = segue.destination as! HomeViewController
             //destinationVC.name = "Hoşgeldin " + (name ?? " ")
             //destinationVC.userToken = userTokenService.getUserTokenFromUserDefaults()
         }

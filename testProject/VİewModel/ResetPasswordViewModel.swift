@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 class ResetPasswordViewModel{
     var services: Services = Services()
-    let userService: UserService = UserService()
+    let clientService: ClientService = ClientService()
     var registerUser : RegisterUser?
 
     func resetPassword(email: String){
@@ -17,10 +17,10 @@ class ResetPasswordViewModel{
         let headers = [
             "Content-Type": "application/json"
         ]
-        userService.userInformation(email: email) { registerUser in
+        clientService.userInformation(email: email) { registerUser in
             if let registerUser = registerUser{
                 url = URL(string: "\(self.services.urlAdress)/admin/realms/test_realm/users/\(registerUser.id)/reset-password-email")!
-                self.userService.request(url: url!, method: .put, headers: headers) { response in
+                self.clientService.request(url: url!, method: .put, headers: headers) { response in
                     if let response = response{
                         switch response.result {
                         case .success:

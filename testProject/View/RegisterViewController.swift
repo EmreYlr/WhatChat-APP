@@ -10,7 +10,7 @@ import UIKit
 class RegisterViewController: UIViewController{
     //MARK: VARIABLES
     var user: User?
-    let userService: UserService = UserService()
+    let clientService: ClientService = ClientService()
     lazy var registerViewModel: RegisterViewModel = {
         return RegisterViewModel()
     }()
@@ -76,7 +76,7 @@ extension RegisterViewController{
     func emailVerifiedScreen(message : String?){
         let alertController = UIAlertController(title: "Email verified", message: message ?? "Please confirm your e-mail from the link sent to your e-mail.", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default){_ in
-            self.userService.userInformation(email: self.emailTextField.text!){ registerUser in
+            self.clientService.userInformation(email: self.emailTextField.text!){ registerUser in
                 if let registerUser = registerUser{
                     if registerUser.emailVerified{
                         self.backLoginScreen()

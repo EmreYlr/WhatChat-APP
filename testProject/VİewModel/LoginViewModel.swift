@@ -15,7 +15,7 @@ class LoginViewModel{
     private var services: Services = Services()
     //TODO: GİRİŞ YAPARKEN EMAİL ONAYLI MI KONTROL ET
     func checkUser(_ username: String, _ password: String, completion: @escaping (Bool?) -> Void) {
-        let headers = [
+        let headers: HTTPHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]
         let user = UserTokenRequest(username: username, password: password, grantType: .PASSWORD)
