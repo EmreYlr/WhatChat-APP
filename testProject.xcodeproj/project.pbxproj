@@ -29,7 +29,7 @@
 		C3B7B79F2A68137500C6257E /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B7B79E2A68137500C6257E /* MessageViewController.swift */; };
 		C3B7B7A12A6817FD00C6257E /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B7B7A02A6817FD00C6257E /* MessageTableViewCell.swift */; };
 		C3B7B7A52A6840A500C6257E /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B7B7A42A6840A500C6257E /* ChatMessage.swift */; };
-		C3B7B7A72A6841A800C6257E /* UserMessageProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B7B7A62A6841A800C6257E /* UserMessageProfile.swift */; };
+		C3B7B7A72A6841A800C6257E /* RoomProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B7B7A62A6841A800C6257E /* RoomProfile.swift */; };
 		C3C839CE2A5D8A6800FC8F2D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C839CD2A5D8A6800FC8F2D /* RegisterViewController.swift */; };
 		C3C839D02A5D9A9500FC8F2D /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C839CF2A5D9A9500FC8F2D /* RegisterViewModel.swift */; };
 		C3C839D22A5D9EAB00FC8F2D /* ClientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C839D12A5D9EAB00FC8F2D /* ClientViewModel.swift */; };
@@ -37,6 +37,7 @@
 		C3CA9A4D2A61C26400C89ADD /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A4C2A61C26400C89ADD /* ResetPasswordViewController.swift */; };
 		C3CA9A4F2A61C68C00C89ADD /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */; };
 		C3CA9A512A61D04800C89ADD /* ClientTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A502A61D04800C89ADD /* ClientTokenService.swift */; };
+		C3EC43362A6ED2EF006BB10E /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC43352A6ED2EF006BB10E /* MessageService.swift */; };
 		C3EFD94B2A5EC62D0075BCD1 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EFD94A2A5EC62D0075BCD1 /* Services.swift */; };
 		C3EFD94D2A5EDC780075BCD1 /* MutualExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EFD94C2A5EDC780075BCD1 /* MutualExtension.swift */; };
 		C3EFD9502A5EE4F20075BCD1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EFD94F2A5EE4F20075BCD1 /* HomeViewController.swift */; };
@@ -71,7 +72,7 @@
 		C3B7B79E2A68137500C6257E /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		C3B7B7A02A6817FD00C6257E /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		C3B7B7A42A6840A500C6257E /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
-		C3B7B7A62A6841A800C6257E /* UserMessageProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessageProfile.swift; sourceTree = "<group>"; };
+		C3B7B7A62A6841A800C6257E /* RoomProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomProfile.swift; sourceTree = "<group>"; };
 		C3C839CD2A5D8A6800FC8F2D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C3C839CF2A5D9A9500FC8F2D /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		C3C839D12A5D9EAB00FC8F2D /* ClientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewModel.swift; sourceTree = "<group>"; };
@@ -79,6 +80,7 @@
 		C3CA9A4C2A61C26400C89ADD /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		C3CA9A502A61D04800C89ADD /* ClientTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTokenService.swift; sourceTree = "<group>"; };
+		C3EC43352A6ED2EF006BB10E /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
 		C3EFD94A2A5EC62D0075BCD1 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		C3EFD94C2A5EDC780075BCD1 /* MutualExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutualExtension.swift; sourceTree = "<group>"; };
 		C3EFD94F2A5EE4F20075BCD1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -120,7 +122,7 @@
 				C32D60222A64628E006ACAEE /* User */,
 				C30655452A607281009E7CA1 /* RegisteredUser.swift */,
 				C3B7B7A42A6840A500C6257E /* ChatMessage.swift */,
-				C3B7B7A62A6841A800C6257E /* UserMessageProfile.swift */,
+				C3B7B7A62A6841A800C6257E /* RoomProfile.swift */,
 				C3C939A02A6AB8190099D914 /* LoggedUser.swift */,
 			);
 			path = Model;
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				C3EFD94A2A5EC62D0075BCD1 /* Services.swift */,
+				C3EC43352A6ED2EF006BB10E /* MessageService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -402,7 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3B7B7A72A6841A800C6257E /* UserMessageProfile.swift in Sources */,
+				C3B7B7A72A6841A800C6257E /* RoomProfile.swift in Sources */,
 				C30F487E2A5D6F52002F0534 /* LoginViewModel.swift in Sources */,
 				C39BDCC02A658DDA00305CEE /* HomeViewModel.swift in Sources */,
 				C32D602A2A646632006ACAEE /* GrantType.swift in Sources */,
@@ -418,6 +421,7 @@
 				C3C839CE2A5D8A6800FC8F2D /* RegisterViewController.swift in Sources */,
 				C30E628F2A6BEF4D00E29762 /* ClientService.swift in Sources */,
 				C3CA9A4F2A61C68C00C89ADD /* ResetPasswordViewModel.swift in Sources */,
+				C3EC43362A6ED2EF006BB10E /* MessageService.swift in Sources */,
 				C30116A02A5B36D20045DE7F /* User.swift in Sources */,
 				C3B7B79F2A68137500C6257E /* MessageViewController.swift in Sources */,
 				C32715852A5AFDF60018D869 /* SceneDelegate.swift in Sources */,

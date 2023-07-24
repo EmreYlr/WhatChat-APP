@@ -17,7 +17,7 @@ class MessageTableViewCell: UITableViewCell {
         didSet{
             bubbleBackgroundView.backgroundColor = chatMessage.isIncoming ? .white : .darkGray
             messageLabel.textColor = chatMessage.isIncoming ? .black: .white
-            messageLabel.text = chatMessage.text
+            messageLabel.text = chatMessage.content
             if chatMessage.isIncoming{
                 leadingConstraint.isActive = true
                 trailingConstraint.isActive = false

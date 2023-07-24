@@ -9,8 +9,10 @@ import Foundation
 import JWTDecode
 class HomeViewModel{
     let clientService: ClientService = ClientService()
+    let userService: UserService = UserService()
     let userTokenService: UserTokenService = UserTokenService()
     let service: Services = Services()
+    let messageService: MessageService = MessageService()
     
     func logoutUser(){
         if let user = userTokenService.getLoggedUser(){
@@ -29,5 +31,16 @@ class HomeViewModel{
             }
         }
     }
+    func getAllRooms(completion: @escaping([RoomProfile]?) -> Void){
+        let url = URL(string: "\(messageService.urlAdress)/api/v1/room/getAllRooms")
+        userService.requestDecodable(url: url!, method: .get) { (room: [RoomProfile]?) in
+            if let room = room{
+                completion(room)
+            }else{
+                completion(nil)
+            }
+        }
+    }
+    
     
 }

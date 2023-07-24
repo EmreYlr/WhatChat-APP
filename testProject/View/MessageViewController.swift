@@ -6,18 +6,22 @@
 //
 
 import UIKit
-class MessageViewController: UIViewController{
+import SocketIO
+class MessageViewController: UIViewController,UINavigationControllerDelegate{
     @IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
     fileprivate let cellId = "messageCell"
+    var room: RoomProfile?
     
-    var messagesFromServer = [
-        ChatMessage (text: "Merhaba nasılsın", isIncoming: true, date: Date.dateFromCustomString(customString: "24/06/2023")),
-        ChatMessage (text: "iyiyim sen nasılsın",isIncoming: false, date: Date.dateFromCustomString(customString: "24/06/2023")),
-        ChatMessage (text: "Bugün şuraya gittim ve orda şu olayı yaşadım. Daha sonra şunları yapptım. Ama ondan sonra şunlar oldu ne yapayım.", isIncoming: true, date: Date.dateFromCustomString(customString: "25/06/2023")),
-        ChatMessage (text: ":(", isIncoming: true, date: Date.dateFromCustomString(customString: "25/06/2023")),
-        ChatMessage (text: "Alla alla Alla alla Alla alla Alla alla Alla alla Alla alla Alla alla Alla alla  Alla alla alla", isIncoming: false, date: Date.dateFromCustomString(customString: "25/06/2023")),
-    ]
+    let manager = SocketManager(socketURL: URL(string: "http://ec2-3-69-241-182.eu-central-1.compute.amazonaws.com:8082")!,config: [.log(true), .compress ])
+    var socket: SocketIOClient!
+    
+    var messagesFromServer = [ChatMessage]()
+    //ChatMessage (userId: "1",content: "Merhaba nasılsın", isIncoming: true, date: Date.dateFromCustomString(customString: "24/06/2023")),
+//    ChatMessage (content: "iyiyim sen nasılsın",isIncoming: false, date: Date.dateFromCustomString(customString: "24/06/2023")),
+//    ChatMessage (content: "Bugün şuraya gittim ve orda şu olayı yaşadım. Daha sonra şunları yapptım. Ama ondan sonra şunlar oldu ne yapayım.", isIncoming: true, date: Date.dateFromCustomString(customString: "25/06/2023")),
+//    ChatMessage (content: ":(", isIncoming: true, date: Date.dateFromCustomString(customString: "25/06/2023")),
+//    ChatMessage (content: "Alla alla Alla alla Alla alla Alla alla Alla alla Alla alla Alla alla Alla alla  Alla alla alla", isIncoming: false, date: Date.dateFromCustomString(customString: "25/06/2023")),
     
     fileprivate func attemptToAssembleGroupedMessages () {
         let groupedMessages = Dictionary (grouping: messagesFromServer) { (element) -> Date in
@@ -30,25 +34,58 @@ class MessageViewController: UIViewController{
             chatMessages.append (values ?? [])
         }
     }
-    
+
     var chatMessages = [[ChatMessage]]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        manager.setConfigs([.connectParams(["room": room!.roomId])]) //TODO: Room kontrol et ve alert ver
         
+        socket = manager.defaultSocket
+        addHandler()
+        socket.connect()
+
         attemptToAssembleGroupedMessages()
-        
+        navigationController?.delegate = self
         messageTableView.dataSource = self
         messageTableView.delegate = self
-        
         messageTableView.register(MessageTableViewCell.self, forCellReuseIdentifier: cellId)
         messageTableView.separatorStyle = .none
         messageTableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         
     }
-    func sendMessage(text: String, isIncoming: Bool) {
-        let newMessage = ChatMessage(text: text, isIncoming: isIncoming, date: Date())
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if viewController is HomeViewController {
+            DispatchQueue.main.async {
+                self.socket.disconnect()
+            }
+            
+        }
+    }
+    
+    func addHandler(){
+        socket.on("get_message") { (data, ack) in
+            if let message = data[0] as? [String: Any],
+               let content = message["content"] as? String,
+               let userId = message["userId"] as? String {
+                DispatchQueue.main.async {
+                    self.newMessage(userId: userId, text: content, isIncoming: true)
+                }
+            }
+        }
+    }
+    
+    func sendMessage(content: String) {
+        let message = ["userId":"1","content": content]
+        socket.emit("send_message", message)
+    }
+    
+    
+    
+    func newMessage(userId: String,text: String, isIncoming: Bool) {
+        let newMessage = ChatMessage(userId: userId,content: text, isIncoming: isIncoming, date: Date())
         
         let calendar = Calendar.current
         let lastMessage = chatMessages.last?.first
@@ -78,7 +115,8 @@ class MessageViewController: UIViewController{
 extension MessageViewController{
     @IBAction func sendButtonPressed(_ sender: UIButton) {
         if let messageText = messageTextField.text, !messageText.isEmpty {
-            sendMessage(text: messageText, isIncoming: false)
+            sendMessage(content: messageText)
+            newMessage(userId: "1",text: messageText, isIncoming: false)
             messageTextField.text = ""
         }
     }
