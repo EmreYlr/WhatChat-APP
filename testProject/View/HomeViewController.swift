@@ -15,14 +15,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var chatTableView: UITableView!
     let addButton = UIButton()
     fileprivate let cellId = "userCell"
-    
-    
     var rooms = [RoomProfile]()
-    //    UserMessageProfile(userName: "Oğuzhan", userMessage: "Bugün ne yapacaksın", time: "15:00", userProfile: "DefaultProfile.svg"),
-    //    UserMessageProfile(userName: "Ali Osman", userMessage: "Hadi nerdesin", time: "12:41", userProfile: "DefaultProfile.svg"),
-    //    UserMessageProfile(userName: "Ahmet", userMessage: "Hadi hadi lol lol", time: "12:00", userProfile: "DefaultProfile.svg")
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         homeViewModel.getAllRooms(completion: { room in
@@ -39,7 +33,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        chatTableView.reloadData()
+        self.chatTableView.reloadData()
     }
     
     
@@ -69,7 +63,7 @@ extension HomeViewController{
     }
     
     @objc func addButtonTapped(){
-        print("test")
+        performSegue(withIdentifier: "showContactsView", sender: nil)
     }
     
 }
@@ -91,7 +85,6 @@ extension HomeViewController{
         }
     }
     
-    
 }
 
 
@@ -107,7 +100,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         cell.userNameLabel.text = userProfile.roomName
         cell.userMessageLabel.text = userProfile.lastMessage
         cell.userProfileImage.image = UIImage(named: userProfile.roomPhoto ?? "DefaultProfile.svg")
-        cell.timeLabel.text = userProfile.lastMessageTime
+        cell.timeLabel.text = dateChange(date: userProfile.lastMessageTime ?? "00:00")
         return cell
     }
     
@@ -117,5 +110,17 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         performSegue(withIdentifier: "showMessageView", sender: room)
         print(room.roomName)
         print(room.roomId)
+    }
+}
+//MARK: Date
+extension HomeViewController{
+    func dateChange(date: String) -> String {
+        let dateString = date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.date(from: dateString)
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: date!)
+
     }
 }

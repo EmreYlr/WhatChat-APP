@@ -388,11 +388,43 @@
                     <connections>
                         <outlet property="chatTableView" destination="Sd5-kx-dSe" id="Q5M-a3-XRa"/>
                         <segue destination="cnt-pa-5Ta" kind="show" identifier="showMessageView" id="kzg-gZ-gkP"/>
+                        <segue destination="wvM-P4-y2O" kind="show" identifier="showContactsView" id="hBb-HC-j4t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Df1-it-2kY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-121" y="1162"/>
+        </scene>
+        <!--Contacts View Controller-->
+        <scene sceneID="K8u-gW-mdL">
+            <objects>
+                <viewController id="wvM-P4-y2O" customClass="ContactsViewController" customModule="testProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qzz-5H-Bv5">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8ff-db-jff">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nr1-Qh-WJ2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8ff-db-jff" firstAttribute="top" secondItem="nr1-Qh-WJ2" secondAttribute="top" id="DUc-NV-vUP"/>
+                            <constraint firstItem="8ff-db-jff" firstAttribute="leading" secondItem="nr1-Qh-WJ2" secondAttribute="leading" id="FPB-Dq-0FI"/>
+                            <constraint firstItem="nr1-Qh-WJ2" firstAttribute="bottom" secondItem="8ff-db-jff" secondAttribute="bottom" id="VMh-fs-9s5"/>
+                            <constraint firstItem="nr1-Qh-WJ2" firstAttribute="trailing" secondItem="8ff-db-jff" secondAttribute="trailing" id="dth-9A-0VU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="KSC-sq-ntP"/>
+                    <connections>
+                        <outlet property="contactsTableView" destination="8ff-db-jff" id="Dt9-7C-gej"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vQ8-gl-5dM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1063" y="1162"/>
         </scene>
         <!--Message-->
         <scene sceneID="37q-io-NjI">

@@ -38,6 +38,7 @@
 		C3CA9A4F2A61C68C00C89ADD /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */; };
 		C3CA9A512A61D04800C89ADD /* ClientTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A502A61D04800C89ADD /* ClientTokenService.swift */; };
 		C3EC43362A6ED2EF006BB10E /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC43352A6ED2EF006BB10E /* MessageService.swift */; };
+		C3EC43382A6EEC90006BB10E /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC43372A6EEC90006BB10E /* ContactsViewController.swift */; };
 		C3EFD94B2A5EC62D0075BCD1 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EFD94A2A5EC62D0075BCD1 /* Services.swift */; };
 		C3EFD94D2A5EDC780075BCD1 /* MutualExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EFD94C2A5EDC780075BCD1 /* MutualExtension.swift */; };
 		C3EFD9502A5EE4F20075BCD1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EFD94F2A5EE4F20075BCD1 /* HomeViewController.swift */; };
@@ -81,6 +82,7 @@
 		C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		C3CA9A502A61D04800C89ADD /* ClientTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTokenService.swift; sourceTree = "<group>"; };
 		C3EC43352A6ED2EF006BB10E /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
+		C3EC43372A6EEC90006BB10E /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		C3EFD94A2A5EC62D0075BCD1 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		C3EFD94C2A5EDC780075BCD1 /* MutualExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutualExtension.swift; sourceTree = "<group>"; };
 		C3EFD94F2A5EE4F20075BCD1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				C3CA9A4C2A61C26400C89ADD /* ResetPasswordViewController.swift */,
 				C3EFD94F2A5EE4F20075BCD1 /* HomeViewController.swift */,
 				C3B7B79E2A68137500C6257E /* MessageViewController.swift */,
+				C3EC43372A6EEC90006BB10E /* ContactsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				C3B7B79F2A68137500C6257E /* MessageViewController.swift in Sources */,
 				C32715852A5AFDF60018D869 /* SceneDelegate.swift in Sources */,
 				C3CA9A512A61D04800C89ADD /* ClientTokenService.swift in Sources */,
+				C3EC43382A6EEC90006BB10E /* ContactsViewController.swift in Sources */,
 				C301169E2A5B345B0045DE7F /* ClientToken.swift in Sources */,
 				C30655442A5F1FFE009E7CA1 /* JWT.swift in Sources */,
 				C32D601D2A642ACD006ACAEE /* UserService.swift in Sources */,
