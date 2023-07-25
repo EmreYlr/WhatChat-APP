@@ -11,7 +11,7 @@ import Alamofire
 class UserService{
     let services: Services = Services()
     let userTokenService: UserTokenService = UserTokenService()
-
+//TODO: Ovveride et
     func requestDecodable<T: Codable, R: Codable>(url: URL ,method: HTTPMethod,parameters: R?, headers: HTTPHeaders,completion: @escaping(T?) -> Void){
         AF.request(url, method: method, parameters: parameters, headers: headers).responseDecodable(of: T.self){ response in
             switch response.response?.statusCode{

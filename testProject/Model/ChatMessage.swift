@@ -8,8 +8,8 @@
 import Foundation
 
 struct ChatMessage{
-    let userId: String
-    let content: String
-    let isIncoming: Bool
-    let date: Date
+    let userPhoneNo: String
+    let message: String
+    let sentByMe: Bool
+    let sentAt: Date
 }

@@ -17,15 +17,10 @@ class MessageViewController: UIViewController,UINavigationControllerDelegate{
     var socket: SocketIOClient!
     
     var messagesFromServer = [ChatMessage]()
-    //ChatMessage (userId: "1",content: "Merhaba nasılsın", isIncoming: true, date: Date.dateFromCustomString(customString: "24/06/2023")),
-//    ChatMessage (content: "iyiyim sen nasılsın",isIncoming: false, date: Date.dateFromCustomString(customString: "24/06/2023")),
-//    ChatMessage (content: "Bugün şuraya gittim ve orda şu olayı yaşadım. Daha sonra şunları yapptım. Ama ondan sonra şunlar oldu ne yapayım.", isIncoming: true, date: Date.dateFromCustomString(customString: "25/06/2023")),
-//    ChatMessage (content: ":(", isIncoming: true, date: Date.dateFromCustomString(customString: "25/06/2023")),
-//    ChatMessage (content: "Alla alla Alla alla Alla alla Alla alla Alla alla Alla alla Alla alla Alla alla  Alla alla alla", isIncoming: false, date: Date.dateFromCustomString(customString: "25/06/2023")),
     
     fileprivate func attemptToAssembleGroupedMessages () {
         let groupedMessages = Dictionary (grouping: messagesFromServer) { (element) -> Date in
-            return element.date
+            return element.sentAt
         }
         let sortedKeys = groupedMessages.keys.sorted()
         
@@ -71,7 +66,7 @@ class MessageViewController: UIViewController,UINavigationControllerDelegate{
                let content = message["content"] as? String,
                let userId = message["userId"] as? String {
                 DispatchQueue.main.async {
-                    self.newMessage(userId: userId, text: content, isIncoming: true)
+                    self.newMessage(userPhoneNo: userId, text: content, sentByMe: true)
                 }
             }
         }
@@ -82,14 +77,12 @@ class MessageViewController: UIViewController,UINavigationControllerDelegate{
         socket.emit("send_message", message)
     }
     
-    
-    
-    func newMessage(userId: String,text: String, isIncoming: Bool) {
-        let newMessage = ChatMessage(userId: userId,content: text, isIncoming: isIncoming, date: Date())
+    func newMessage(userPhoneNo: String,text: String, sentByMe: Bool) {
+        let newMessage = ChatMessage(userPhoneNo: userPhoneNo,message: text, sentByMe: sentByMe, sentAt: Date())
         
         let calendar = Calendar.current
         let lastMessage = chatMessages.last?.first
-        let sameDate = calendar.isDate(newMessage.date, inSameDayAs: lastMessage?.date ?? Date())
+        let sameDate = calendar.isDate(newMessage.sentAt, inSameDayAs: lastMessage?.sentAt ?? Date())
 
         if chatMessages.isEmpty || !sameDate {
             chatMessages.append([newMessage])
@@ -116,7 +109,7 @@ extension MessageViewController{
     @IBAction func sendButtonPressed(_ sender: UIButton) {
         if let messageText = messageTextField.text, !messageText.isEmpty {
             sendMessage(content: messageText)
-            newMessage(userId: "1",text: messageText, isIncoming: false)
+            newMessage(userPhoneNo: "1",text: messageText, sentByMe: false)
             messageTextField.text = ""
         }
     }
@@ -131,7 +124,7 @@ extension MessageViewController: UITableViewDataSource, UITableViewDelegate{
         if let firstMessageInSection = chatMessages [section].first {
             let dateFormatter = DateFormatter ()
             dateFormatter.dateFormat="dd/MM/yyyy"
-            let dateString = dateFormatter.string (from: firstMessageInSection.date)
+            let dateString = dateFormatter.string (from: firstMessageInSection.sentAt)
             let label = DateHeaderLabel()
             label.text = dateString
             let containerView = UIView()

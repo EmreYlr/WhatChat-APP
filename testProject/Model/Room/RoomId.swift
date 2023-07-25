@@ -8,7 +8,7 @@
 import Foundation
 struct RoomId: Codable {
     let roomId: Int
-    private enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case roomId = "roomId"
     }
 }
