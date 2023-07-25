@@ -23,6 +23,10 @@
 		C32D601D2A642ACD006ACAEE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D601C2A642ACD006ACAEE /* UserService.swift */; };
 		C32D60272A64651A006ACAEE /* UserTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D60262A64651A006ACAEE /* UserTokenRequest.swift */; };
 		C32D602A2A646632006ACAEE /* GrantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D60292A646632006ACAEE /* GrantType.swift */; };
+		C39800052A7011E800E39519 /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39800042A7011E800E39519 /* NewContactViewController.swift */; };
+		C39800072A70189900E39519 /* NewContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39800062A70189900E39519 /* NewContactViewModel.swift */; };
+		C39800092A701AE000E39519 /* PhoneNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39800082A701AE000E39519 /* PhoneNumbers.swift */; };
+		C398000B2A701D9C00E39519 /* RoomId.swift in Sources */ = {isa = PBXBuildFile; fileRef = C398000A2A701D9C00E39519 /* RoomId.swift */; };
 		C39BDCC02A658DDA00305CEE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39BDCBF2A658DDA00305CEE /* HomeViewModel.swift */; };
 		C39BDCC42A659CBF00305CEE /* UserTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39BDCC32A659CBF00305CEE /* UserTokenService.swift */; };
 		C3B7B79B2A6804CE00C6257E /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B7B79A2A6804CE00C6257E /* UserTableViewCell.swift */; };
@@ -67,6 +71,10 @@
 		C32D601C2A642ACD006ACAEE /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		C32D60262A64651A006ACAEE /* UserTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTokenRequest.swift; sourceTree = "<group>"; };
 		C32D60292A646632006ACAEE /* GrantType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrantType.swift; sourceTree = "<group>"; };
+		C39800042A7011E800E39519 /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
+		C39800062A70189900E39519 /* NewContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewModel.swift; sourceTree = "<group>"; };
+		C39800082A701AE000E39519 /* PhoneNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumbers.swift; sourceTree = "<group>"; };
+		C398000A2A701D9C00E39519 /* RoomId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomId.swift; sourceTree = "<group>"; };
 		C39BDCBF2A658DDA00305CEE /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C39BDCC32A659CBF00305CEE /* UserTokenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTokenService.swift; sourceTree = "<group>"; };
 		C3B7B79A2A6804CE00C6257E /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
@@ -122,9 +130,9 @@
 			children = (
 				C3C9399E2A6AB76B0099D914 /* Client */,
 				C32D60222A64628E006ACAEE /* User */,
+				C398000C2A702DB400E39519 /* Room */,
 				C30655452A607281009E7CA1 /* RegisteredUser.swift */,
 				C3B7B7A42A6840A500C6257E /* ChatMessage.swift */,
-				C3B7B7A62A6841A800C6257E /* RoomProfile.swift */,
 				C3C939A02A6AB8190099D914 /* LoggedUser.swift */,
 			);
 			path = Model;
@@ -139,6 +147,7 @@
 				C3EFD94F2A5EE4F20075BCD1 /* HomeViewController.swift */,
 				C3B7B79E2A68137500C6257E /* MessageViewController.swift */,
 				C3EC43372A6EEC90006BB10E /* ContactsViewController.swift */,
+				C39800042A7011E800E39519 /* NewContactViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -151,6 +160,7 @@
 				C3C839CF2A5D9A9500FC8F2D /* RegisterViewModel.swift */,
 				C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */,
 				C39BDCBF2A658DDA00305CEE /* HomeViewModel.swift */,
+				C39800062A70189900E39519 /* NewContactViewModel.swift */,
 			);
 			name = ViewModel;
 			path = "VİewModel";
@@ -226,6 +236,16 @@
 			children = (
 			);
 			path = response;
+			sourceTree = "<group>";
+		};
+		C398000C2A702DB400E39519 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+				C3B7B7A62A6841A800C6257E /* RoomProfile.swift */,
+				C39800082A701AE000E39519 /* PhoneNumbers.swift */,
+				C398000A2A701D9C00E39519 /* RoomId.swift */,
+			);
+			path = Room;
 			sourceTree = "<group>";
 		};
 		C3B7B79C2A68129100C6257E /* Cell */ = {
@@ -408,7 +428,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C39800072A70189900E39519 /* NewContactViewModel.swift in Sources */,
 				C3B7B7A72A6841A800C6257E /* RoomProfile.swift in Sources */,
+				C39800052A7011E800E39519 /* NewContactViewController.swift in Sources */,
 				C30F487E2A5D6F52002F0534 /* LoginViewModel.swift in Sources */,
 				C39BDCC02A658DDA00305CEE /* HomeViewModel.swift in Sources */,
 				C32D602A2A646632006ACAEE /* GrantType.swift in Sources */,
@@ -419,6 +441,7 @@
 				C32715832A5AFDF60018D869 /* AppDelegate.swift in Sources */,
 				C3CA9A4D2A61C26400C89ADD /* ResetPasswordViewController.swift in Sources */,
 				C3EFD94D2A5EDC780075BCD1 /* MutualExtension.swift in Sources */,
+				C398000B2A701D9C00E39519 /* RoomId.swift in Sources */,
 				C3EFD94B2A5EC62D0075BCD1 /* Services.swift in Sources */,
 				C3B7B7A12A6817FD00C6257E /* MessageTableViewCell.swift in Sources */,
 				C3C839CE2A5D8A6800FC8F2D /* RegisterViewController.swift in Sources */,
@@ -438,6 +461,7 @@
 				C3C939A12A6AB8190099D914 /* LoggedUser.swift in Sources */,
 				C3B7B79B2A6804CE00C6257E /* UserTableViewCell.swift in Sources */,
 				C30655462A607281009E7CA1 /* RegisteredUser.swift in Sources */,
+				C39800092A701AE000E39519 /* PhoneNumbers.swift in Sources */,
 				C3EFD9502A5EE4F20075BCD1 /* HomeViewController.swift in Sources */,
 				C32715972A5B00EB0018D869 /* UserToken.swift in Sources */,
 			);

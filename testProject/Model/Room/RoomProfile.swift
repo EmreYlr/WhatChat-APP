@@ -12,5 +12,4 @@ struct RoomProfile: Codable{
     let lastMessage: String?
     let lastMessageTime: String?
     let roomPhoto: String?
-    
 }

@@ -14,7 +14,7 @@ class RegisterViewController: UIViewController{
     lazy var registerViewModel: RegisterViewModel = {
         return RegisterViewModel()
     }()
-    
+    //TODO: Alertte 3.buton olarak iptal butonunu ekle
     var clientViewModel: ClientViewModel?
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var surnameTextField: UITextField!

@@ -120,7 +120,7 @@ extension HomeViewController{
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let date = dateFormatter.date(from: dateString)
         dateFormatter.dateFormat = "HH:mm"
-        return dateFormatter.string(from: date!)
+        return dateFormatter.string(from: date ?? Date())
 
     }
 }
