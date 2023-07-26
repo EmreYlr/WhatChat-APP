@@ -15,15 +15,15 @@ class MessageTableViewCell: UITableViewCell {
 
     var chatMessage: ChatMessage!{
         didSet{
-            bubbleBackgroundView.backgroundColor = chatMessage.sentByMe ? .white : .darkGray
-            messageLabel.textColor = chatMessage.sentByMe ? .black: .white
+            bubbleBackgroundView.backgroundColor = chatMessage.sentByMe ? .darkGray : .white
+            messageLabel.textColor = chatMessage.sentByMe ? .white: .black
             messageLabel.text = chatMessage.message
             if chatMessage.sentByMe{
-                leadingConstraint.isActive = true
-                trailingConstraint.isActive = false
-            }else{
                 leadingConstraint.isActive = false
                 trailingConstraint.isActive = true
+            }else{
+                leadingConstraint.isActive = true
+                trailingConstraint.isActive = false
             }
         }
     }

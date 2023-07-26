@@ -7,42 +7,32 @@
 
 import UIKit
 import SocketIO
-class MessageViewController: UIViewController,UINavigationControllerDelegate{
+class MessageViewController: UIViewController{
     @IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
+    var userTokenService: UserTokenService = UserTokenService()
+    var messageViewModel: MessageViewModel = MessageViewModel()
     fileprivate let cellId = "messageCell"
-    var room: RoomProfile?
+    var room: RoomId?
     
     let manager = SocketManager(socketURL: URL(string: "http://ec2-3-69-241-182.eu-central-1.compute.amazonaws.com:8082")!,config: [.log(true), .compress ])
     var socket: SocketIOClient!
     
     var messagesFromServer = [ChatMessage]()
     
-    fileprivate func attemptToAssembleGroupedMessages () {
-        let groupedMessages = Dictionary (grouping: messagesFromServer) { (element) -> Date in
-            return element.sentAt
-        }
-        let sortedKeys = groupedMessages.keys.sorted()
-        
-        sortedKeys.forEach { (key) in
-            let values = groupedMessages [key]
-            chatMessages.append (values ?? [])
-        }
+    fileprivate func attemptToAssembleGroupedMessages() {
+        let groupedMessages = groupMessagesByDate(messages: messagesFromServer)
+        chatMessages = groupedMessages
     }
-
-    var chatMessages = [[ChatMessage]]()
     
+    var chatMessages = [[ChatMessage]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.setConfigs([.connectParams(["room": room!.roomId])]) //TODO: Room kontrol et ve alert ver
-        
         socket = manager.defaultSocket
         addHandler()
         socket.connect()
-
-        attemptToAssembleGroupedMessages()
-        navigationController?.delegate = self
         messageTableView.dataSource = self
         messageTableView.delegate = self
         messageTableView.register(MessageTableViewCell.self, forCellReuseIdentifier: cellId)
@@ -50,40 +40,54 @@ class MessageViewController: UIViewController,UINavigationControllerDelegate{
         messageTableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         
     }
-    
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        if viewController is HomeViewController {
-            DispatchQueue.main.async {
-                self.socket.disconnect()
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        socket.disconnect()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getAllMessage(roomId: room!)
+    }
+}
+//MARK: MESSAGE
+extension MessageViewController{
+    func getAllMessage(roomId: RoomId){
+        messageViewModel.getRoomMessage(roomId: roomId) { chatMessage in
+            if let chatMessage = chatMessage{
+                self.messagesFromServer = chatMessage
+                self.attemptToAssembleGroupedMessages()
+                self.messageTableView.reloadData()
+                self.scrollToBottom(animated: false)
+            }else{
+                print("error")
             }
-            
         }
     }
-    
     func addHandler(){
         socket.on("get_message") { (data, ack) in
             if let message = data[0] as? [String: Any],
                let content = message["content"] as? String,
                let userId = message["userId"] as? String {
                 DispatchQueue.main.async {
-                    self.newMessage(userPhoneNo: userId, text: content, sentByMe: true)
+                    self.newMessage(userPhoneNo: userId, text: content, sentByMe: false)
                 }
             }
         }
     }
     
     func sendMessage(content: String) {
-        let message = ["userId":"1","content": content]
+        let message = ["userId":userTokenService.getLoggedUser()?.userId,"content": content]
         socket.emit("send_message", message)
     }
     
     func newMessage(userPhoneNo: String,text: String, sentByMe: Bool) {
-        let newMessage = ChatMessage(userPhoneNo: userPhoneNo,message: text, sentByMe: sentByMe, sentAt: Date())
+        let newMessage = ChatMessage(userPhoneNo: userPhoneNo,message: text, sentByMe: sentByMe, sentAt: "\(Date())")
         
         let calendar = Calendar.current
         let lastMessage = chatMessages.last?.first
-        let sameDate = calendar.isDate(newMessage.sentAt, inSameDayAs: lastMessage?.sentAt ?? Date())
-
+        
+        let sameDate = calendar.isDate(Date.dateFromCustomString(customString: newMessage.sentAt), inSameDayAs: Date.dateFromCustomString(customString: lastMessage?.sentAt ?? "\(Date())"))
+        
         if chatMessages.isEmpty || !sameDate {
             chatMessages.append([newMessage])
             let newSectionIndex = chatMessages.count - 1
@@ -102,14 +106,35 @@ class MessageViewController: UIViewController,UINavigationControllerDelegate{
         messageTableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
     }
     
+    private func scrollToBottom(animated: Bool) {
+        guard !chatMessages.isEmpty else { return }
+        let lastSectionIndex = chatMessages.count - 1
+        let lastRowIndex = chatMessages[lastSectionIndex].count - 1
+        let lastIndexPath = IndexPath(row: lastRowIndex, section: lastSectionIndex)
+        messageTableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: animated)
+    }
+    private func groupMessagesByDate(messages: [ChatMessage]) -> [[ChatMessage]] {
+        let groupedMessages = Dictionary(grouping: messages) { element -> Date in
+            return Date.dateFromCustomString(customString: dateChanged(sentAt: element.sentAt))
+        }
+        let sortedKeys = groupedMessages.keys.sorted()
+
+        var groupedArray = [[ChatMessage]]()
+        sortedKeys.forEach { key in
+            let values = groupedMessages[key] ?? []
+            groupedArray.append(values)
+        }
+        return groupedArray
+    }
 }
+
 
 //MARK: Button
 extension MessageViewController{
     @IBAction func sendButtonPressed(_ sender: UIButton) {
         if let messageText = messageTextField.text, !messageText.isEmpty {
             sendMessage(content: messageText)
-            newMessage(userPhoneNo: "1",text: messageText, sentByMe: false)
+            newMessage(userPhoneNo: "1",text: messageText, sentByMe: true)
             messageTextField.text = ""
         }
     }
@@ -121,10 +146,8 @@ extension MessageViewController: UITableViewDataSource, UITableViewDelegate{
         return chatMessages.count
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let firstMessageInSection = chatMessages [section].first {
-            let dateFormatter = DateFormatter ()
-            dateFormatter.dateFormat="dd/MM/yyyy"
-            let dateString = dateFormatter.string (from: firstMessageInSection.sentAt)
+        if let firstMessageInSection = chatMessages[section].first {
+            let dateString = dateChanged(sentAt: firstMessageInSection.sentAt)
             let label = DateHeaderLabel()
             label.text = dateString
             let containerView = UIView()
@@ -155,7 +178,19 @@ extension MessageViewController: UITableViewDataSource, UITableViewDelegate{
     
     
 }
-
+//MARK: Date Changed
+extension MessageViewController{
+    func dateChanged(sentAt: String) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        if let originalDate = dateFormatter.date(from: sentAt) {
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let formattedDateString = dateFormatter.string(from: originalDate)
+            return formattedDateString
+        }
+        return sentAt
+    }
+}
 //MARK: Date
 extension Date{
     static func dateFromCustomString (customString: String) -> Date {

@@ -9,6 +9,7 @@ import UIKit
 import Contacts
 class ContactsViewController: UIViewController {
     @IBOutlet weak var contactsTableView: UITableView!
+    var contectsViewModel : ContactViewModel = ContactViewModel()
     var contacts = [CNContact]()
     var selectedContacts = Set<CNContact>()
     
@@ -18,9 +19,14 @@ class ContactsViewController: UIViewController {
         contactsTableView.delegate = self
         contactsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         contactsTableView.allowsMultipleSelection = true
-        fetchContacts()
         showDoneButton()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        contacts.removeAll()
+        fetchContacts()
+        contactsTableView.reloadData()
     }
 }
 
@@ -41,20 +47,42 @@ extension ContactsViewController{
     }
     
     @objc func doneButtonTapped() {
+        let selectedPhoneNumbers = getSelectedPhoneNumbers()
         if selectedContacts.count > 1 {
             print("Birden fazla kişi seçildi")
         } else {
-            print("Tek kişi seçildi")
+            createRoom(selectedPhoneNumber: selectedPhoneNumbers)
         }
+        
+        print("Selected phone numbers: \(selectedPhoneNumbers)")
         navigationController?.popViewController(animated: true)
     }
     
     @objc func newContactButtonTapped() {
         performSegue(withIdentifier: "newContactShow", sender: nil)
     }
-    
 }
-
+//MARK: CREATE
+extension ContactsViewController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMessageView" {
+            if let messageVC = segue.destination as? MessageViewController {
+                messageVC.room =  sender as! RoomId?
+            }
+        }
+    }
+    func createRoom(selectedPhoneNumber: [String]){
+        let phoneNumbers = PhoneNumbers(userPhoneList: selectedPhoneNumber)
+        contectsViewModel.addNewContact(phoneNumbers: phoneNumbers) { roomId in
+            if let roomId = roomId?.roomId{
+                //let room = RoomId(roomId: roomId)
+                self.navigationController?.popViewController(animated: true)
+            }else{
+                self.Alert(title: "Error", alertMessage: "This person is not on TestApp")
+            }
+        }
+    }
+}
 
 //MARK: CONTACTS
 extension ContactsViewController{
@@ -76,7 +104,17 @@ extension ContactsViewController{
                 print(error)
             }
         }
-        
+    }
+    func getSelectedPhoneNumbers() -> [String] {
+        var phoneNumbers = [String]()
+        for contact in selectedContacts {
+            for phoneNumber in contact.phoneNumbers {
+                let numberValue = phoneNumber.value.stringValue
+                let numericPhoneNumber = numberValue.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                phoneNumbers.append(numericPhoneNumber)
+            }
+        }
+        return phoneNumbers
     }
 }
 

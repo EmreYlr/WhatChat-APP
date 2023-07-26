@@ -23,6 +23,8 @@
 		C32D601D2A642ACD006ACAEE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D601C2A642ACD006ACAEE /* UserService.swift */; };
 		C32D60272A64651A006ACAEE /* UserTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D60262A64651A006ACAEE /* UserTokenRequest.swift */; };
 		C32D602A2A646632006ACAEE /* GrantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D60292A646632006ACAEE /* GrantType.swift */; };
+		C38161612A7146B6004912A0 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38161602A7146B6004912A0 /* ContactsViewModel.swift */; };
+		C38161632A7164B3004912A0 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38161622A7164B3004912A0 /* MessageViewModel.swift */; };
 		C39800052A7011E800E39519 /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39800042A7011E800E39519 /* NewContactViewController.swift */; };
 		C39800072A70189900E39519 /* NewContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39800062A70189900E39519 /* NewContactViewModel.swift */; };
 		C39800092A701AE000E39519 /* PhoneNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39800082A701AE000E39519 /* PhoneNumbers.swift */; };
@@ -71,6 +73,8 @@
 		C32D601C2A642ACD006ACAEE /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		C32D60262A64651A006ACAEE /* UserTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTokenRequest.swift; sourceTree = "<group>"; };
 		C32D60292A646632006ACAEE /* GrantType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrantType.swift; sourceTree = "<group>"; };
+		C38161602A7146B6004912A0 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
+		C38161622A7164B3004912A0 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		C39800042A7011E800E39519 /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
 		C39800062A70189900E39519 /* NewContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewModel.swift; sourceTree = "<group>"; };
 		C39800082A701AE000E39519 /* PhoneNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumbers.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				C3C839CF2A5D9A9500FC8F2D /* RegisterViewModel.swift */,
 				C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */,
 				C39BDCBF2A658DDA00305CEE /* HomeViewModel.swift */,
+				C38161622A7164B3004912A0 /* MessageViewModel.swift */,
+				C38161602A7146B6004912A0 /* ContactsViewModel.swift */,
 				C39800062A70189900E39519 /* NewContactViewModel.swift */,
 			);
 			name = ViewModel;
@@ -440,6 +446,7 @@
 				C32D60272A64651A006ACAEE /* UserTokenRequest.swift in Sources */,
 				C32715832A5AFDF60018D869 /* AppDelegate.swift in Sources */,
 				C3CA9A4D2A61C26400C89ADD /* ResetPasswordViewController.swift in Sources */,
+				C38161612A7146B6004912A0 /* ContactsViewModel.swift in Sources */,
 				C3EFD94D2A5EDC780075BCD1 /* MutualExtension.swift in Sources */,
 				C398000B2A701D9C00E39519 /* RoomId.swift in Sources */,
 				C3EFD94B2A5EC62D0075BCD1 /* Services.swift in Sources */,
@@ -459,6 +466,7 @@
 				C3C839D22A5D9EAB00FC8F2D /* ClientViewModel.swift in Sources */,
 				C3C839D02A5D9A9500FC8F2D /* RegisterViewModel.swift in Sources */,
 				C3C939A12A6AB8190099D914 /* LoggedUser.swift in Sources */,
+				C38161632A7164B3004912A0 /* MessageViewModel.swift in Sources */,
 				C3B7B79B2A6804CE00C6257E /* UserTableViewCell.swift in Sources */,
 				C30655462A607281009E7CA1 /* RegisteredUser.swift in Sources */,
 				C39800092A701AE000E39519 /* PhoneNumbers.swift in Sources */,

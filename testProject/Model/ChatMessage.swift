@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct ChatMessage{
+struct ChatMessage:Codable{
     let userPhoneNo: String
     let message: String
     let sentByMe: Bool
-    let sentAt: Date
+    let sentAt: String
 }

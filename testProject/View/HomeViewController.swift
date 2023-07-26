@@ -19,24 +19,22 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeViewModel.getAllRooms(completion: { room in
-            if let room = room{
-                self.rooms = room
-                self.chatTableView.reloadData()
-            }
-        })
+        
         self.navigationItem.setHidesBackButton(true, animated: false)
         chatTableView.dataSource = self
         chatTableView.delegate = self
         addUserButton()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.chatTableView.reloadData()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        homeViewModel.getAllRooms(completion: { room in
+            if let room = room{
+                self.rooms = room
+                self.chatTableView.reloadData()
+            }
+        })
     }
-    
-    
 }
 //MARK: Button
 extension HomeViewController{
@@ -80,7 +78,7 @@ extension HomeViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMessageView" {
             if let messageVC = segue.destination as? MessageViewController {
-                messageVC.room =  sender as! RoomProfile?
+                messageVC.room =  sender as! RoomId?
             }
         }
     }
@@ -107,7 +105,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let room = rooms[indexPath.row]
-        performSegue(withIdentifier: "showMessageView", sender: room)
+        let roomId = RoomId(roomId: room.roomId)
+        performSegue(withIdentifier: "showMessageView", sender: roomId)
         print(room.roomName)
         print(room.roomId)
     }

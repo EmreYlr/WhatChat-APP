@@ -1,12 +1,12 @@
 //
-//  NewContactViewModel.swift
+//  ContactsViewModel.swift
 //  testProject
 //
-//  Created by Emre on 25.07.2023.
+//  Created by Emre on 26.07.2023.
 //
 
 import Foundation
-class NewContactViewModel{
+class ContactViewModel{
     private let userService: UserService = UserService()
     private let messageService: MessageService = MessageService()
     
