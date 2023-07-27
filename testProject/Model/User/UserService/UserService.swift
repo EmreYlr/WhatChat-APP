@@ -30,7 +30,7 @@ class UserService{
         AF.request(url, method: method, parameters: parameters,encoder: JSONParameterEncoder.default, headers: authHeaders).responseDecodable(of: T.self){ response in
             debugPrint(response)
             switch response.response?.statusCode{
-            case 401:
+            case 400,401:
                 print("Bağlantı Hatası")
                 completion(nil)
                 break

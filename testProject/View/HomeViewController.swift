@@ -95,7 +95,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userProfile = rooms[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! userTableViewCell
-        cell.userNameLabel.text = userProfile.roomName
+        if userProfile.roomName == nil{
+            cell.userNameLabel.text = userProfile.userPhoneNo
+        }else{
+            cell.userNameLabel.text = userProfile.roomName
+        }
         cell.userMessageLabel.text = userProfile.lastMessage
         cell.userProfileImage.image = UIImage(named: userProfile.roomPhoto ?? "DefaultProfile.svg")
         cell.timeLabel.text = dateChange(date: userProfile.lastMessageTime ?? "00:00")
@@ -107,8 +111,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         let room = rooms[indexPath.row]
         let roomId = RoomId(roomId: room.roomId)
         performSegue(withIdentifier: "showMessageView", sender: roomId)
-        print(room.roomName)
-        print(room.roomId)
     }
 }
 //MARK: Date

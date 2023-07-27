@@ -62,6 +62,7 @@ extension MessageViewController{
                 print("error")
             }
         }
+        
     }
     func addHandler(){
         socket.on("get_message") { (data, ack) in
@@ -81,8 +82,9 @@ extension MessageViewController{
     }
     
     func newMessage(userPhoneNo: String,text: String, sentByMe: Bool) {
-        let newMessage = ChatMessage(userPhoneNo: userPhoneNo,message: text, sentByMe: sentByMe, sentAt: "\(Date())")
-        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let newMessage = ChatMessage(userPhoneNo: userPhoneNo,message: text, sentByMe: sentByMe, sentAt: dateFormatter.string(from: Date()))
         let calendar = Calendar.current
         let lastMessage = chatMessages.last?.first
         

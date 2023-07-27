@@ -395,6 +395,70 @@
             </objects>
             <point key="canvasLocation" x="-121" y="874"/>
         </scene>
+        <!--Group Name-->
+        <scene sceneID="8IF-mJ-EWp">
+            <objects>
+                <viewController id="RXM-9L-M8x" customClass="GroupNameViewController" customModule="testProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="093-CH-xuZ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Group Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KPU-TW-HU6">
+                                <rect key="frame" x="82" y="301" width="229" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="xlR-dW-kw9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Brs-Vx-h2C">
+                                <rect key="frame" x="157" y="414" width="102" height="52"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="qfq-ry-8mB"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Submit">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="bYE-Em-flB" eventType="touchUpInside" id="Sl6-vI-Fwb"/>
+                                    <action selector="submitButtonPressed:" destination="RXM-9L-M8x" eventType="touchUpInside" id="bhe-dN-Nbr"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Group" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYx-rT-fZ4">
+                                <rect key="frame" x="55" y="171" width="283" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <color key="textColor" systemColor="systemBlueColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="T2A-Od-BJC"/>
+                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                        <constraints>
+                            <constraint firstItem="Brs-Vx-h2C" firstAttribute="leading" secondItem="T2A-Od-BJC" secondAttribute="leading" constant="157" id="0RD-3y-doW"/>
+                            <constraint firstItem="T2A-Od-BJC" firstAttribute="trailing" secondItem="Brs-Vx-h2C" secondAttribute="trailing" constant="134" id="IKh-9x-JcF"/>
+                            <constraint firstItem="KPU-TW-HU6" firstAttribute="top" secondItem="hYx-rT-fZ4" secondAttribute="bottom" constant="79" id="PBd-hO-X4Z"/>
+                            <constraint firstItem="Brs-Vx-h2C" firstAttribute="top" secondItem="KPU-TW-HU6" secondAttribute="bottom" constant="79" id="SMz-8U-gUp"/>
+                            <constraint firstItem="T2A-Od-BJC" firstAttribute="bottom" secondItem="Brs-Vx-h2C" secondAttribute="bottom" constant="352" id="Ulz-Yb-Anj"/>
+                            <constraint firstItem="hYx-rT-fZ4" firstAttribute="leading" secondItem="T2A-Od-BJC" secondAttribute="leading" constant="55" id="Xwo-8q-JOi"/>
+                            <constraint firstItem="hYx-rT-fZ4" firstAttribute="top" secondItem="T2A-Od-BJC" secondAttribute="top" constant="68" id="fZa-Dj-6oc"/>
+                            <constraint firstItem="hYx-rT-fZ4" firstAttribute="centerX" secondItem="KPU-TW-HU6" secondAttribute="centerX" id="jmi-em-eOK"/>
+                            <constraint firstItem="hYx-rT-fZ4" firstAttribute="centerX" secondItem="093-CH-xuZ" secondAttribute="centerX" id="nhP-3W-REf"/>
+                            <constraint firstItem="KPU-TW-HU6" firstAttribute="leading" secondItem="T2A-Od-BJC" secondAttribute="leading" constant="82" id="pmC-Ev-DDZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Group Name" id="AKZ-er-8YU">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="dDp-70-Hmr"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="groupNameTextField" destination="KPU-TW-HU6" id="WZo-cX-1kB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="04Z-41-hBB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1063" y="1672"/>
+        </scene>
         <!--Contact-->
         <scene sceneID="K8u-gW-mdL">
             <objects>
@@ -423,6 +487,7 @@
                     <connections>
                         <outlet property="contactsTableView" destination="8ff-db-jff" id="Dt9-7C-gej"/>
                         <segue destination="hoF-VM-7ix" kind="show" identifier="newContactShow" id="dRV-pk-cWb"/>
+                        <segue destination="RXM-9L-M8x" kind="show" identifier="showGroupNameView" id="9Ae-er-zWB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vQ8-gl-5dM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -529,9 +594,9 @@
                                 <rect key="frame" x="0.0" y="758" width="393" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zpj-56-SSb">
-                                        <rect key="frame" x="16" y="10" width="317" height="34"/>
+                                        <rect key="frame" x="16" y="10" width="317" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                                        <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HT-Fd-BEb">
                                         <rect key="frame" x="341" y="10" width="36" height="30"/>
@@ -541,10 +606,11 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="zpj-56-SSb" firstAttribute="leading" secondItem="LWG-xG-cRe" secondAttribute="leading" constant="16" id="Cmv-we-C4a"/>
                                     <constraint firstItem="zpj-56-SSb" firstAttribute="top" secondItem="LWG-xG-cRe" secondAttribute="top" constant="10" id="WiG-SN-cA4"/>
+                                    <constraint firstAttribute="bottom" secondItem="zpj-56-SSb" secondAttribute="bottom" constant="10" id="d1f-D5-kMu"/>
                                     <constraint firstItem="7HT-Fd-BEb" firstAttribute="leading" secondItem="zpj-56-SSb" secondAttribute="trailing" constant="8" id="dSq-Ya-mG1"/>
                                     <constraint firstItem="7HT-Fd-BEb" firstAttribute="top" secondItem="LWG-xG-cRe" secondAttribute="top" constant="10" id="pkj-Pz-zvY"/>
                                     <constraint firstAttribute="trailing" secondItem="7HT-Fd-BEb" secondAttribute="trailing" constant="16" id="rr9-P4-hq6"/>
@@ -567,12 +633,12 @@
                     <navigationItem key="navigationItem" title="Message" id="Me4-7T-HAr"/>
                     <connections>
                         <outlet property="messageTableView" destination="fUH-8r-3gb" id="lwn-p8-HD0"/>
-                        <outlet property="messageTextField" destination="zpj-56-SSb" id="CVQ-h7-dMn"/>
+                        <outlet property="messageTextField" destination="zpj-56-SSb" id="lp9-8L-Ezp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QOs-ta-FTv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-121" y="1692"/>
+            <point key="canvasLocation" x="-121" y="1672"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W3t-aa-b5g">

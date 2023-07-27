@@ -8,7 +8,8 @@
 import Foundation
 struct RoomProfile: Codable{
     let roomId: Int
-    let roomName: String
+    let roomName: String?
+    let userPhoneNo: String?
     let lastMessage: String?
     let lastMessageTime: String?
     let roomPhoto: String?

@@ -49,13 +49,13 @@ extension ContactsViewController{
     @objc func doneButtonTapped() {
         let selectedPhoneNumbers = getSelectedPhoneNumbers()
         if selectedContacts.count > 1 {
-            print("Birden fazla kişi seçildi")
+            performSegue(withIdentifier: "showGroupNameView", sender: nil)
         } else {
             createRoom(selectedPhoneNumber: selectedPhoneNumbers)
         }
         
         print("Selected phone numbers: \(selectedPhoneNumbers)")
-        navigationController?.popViewController(animated: true)
+        //navigationController?.popViewController(animated: true)
     }
     
     @objc func newContactButtonTapped() {
@@ -65,9 +65,9 @@ extension ContactsViewController{
 //MARK: CREATE
 extension ContactsViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showMessageView" {
-            if let messageVC = segue.destination as? MessageViewController {
-                messageVC.room =  sender as! RoomId?
+        if segue.identifier == "showGroupNameView" {
+            if let messageVC = segue.destination as? GroupNameViewController {
+                messageVC.phoneNumbers = getSelectedPhoneNumbers()
             }
         }
     }
@@ -163,6 +163,8 @@ extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
             navigationItem.rightBarButtonItem = nil
         }
     }
-    
+}
+//MARK: ALERT
+extension ContactsViewController{
     
 }
