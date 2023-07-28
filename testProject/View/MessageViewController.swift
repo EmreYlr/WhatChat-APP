@@ -42,6 +42,7 @@ class MessageViewController: UIViewController{
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        manager.disconnect()
         socket.disconnect()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -64,13 +65,16 @@ extension MessageViewController{
         }
         
     }
+    
     func addHandler(){
         socket.on("get_message") { (data, ack) in
             if let message = data[0] as? [String: Any],
                let content = message["content"] as? String,
-               let userId = message["userId"] as? String {
+               let userId = message["userId"] as? String,
+                let sentAt = message["sentAt"] as? String{
+                let getMessage = GetMessage(content: content, userId: userId, sentAt: sentAt)
                 DispatchQueue.main.async {
-                    self.newMessage(userPhoneNo: userId, text: content, sentByMe: false)
+                    self.newMessage(userId: getMessage.userId, text: getMessage.content, sentByMe: false)
                 }
             }
         }
@@ -81,10 +85,10 @@ extension MessageViewController{
         socket.emit("send_message", message)
     }
     
-    func newMessage(userPhoneNo: String,text: String, sentByMe: Bool) {
+    func newMessage(userId: String,text: String, sentByMe: Bool) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
-        let newMessage = ChatMessage(userPhoneNo: userPhoneNo,message: text, sentByMe: sentByMe, sentAt: dateFormatter.string(from: Date()))
+        let newMessage = ChatMessage(userPhoneNo: userId,message: text, sentByMe: sentByMe, sentAt: dateFormatter.string(from: Date()))
         let calendar = Calendar.current
         let lastMessage = chatMessages.last?.first
         
@@ -136,7 +140,7 @@ extension MessageViewController{
     @IBAction func sendButtonPressed(_ sender: UIButton) {
         if let messageText = messageTextField.text, !messageText.isEmpty {
             sendMessage(content: messageText)
-            newMessage(userPhoneNo: "1",text: messageText, sentByMe: true)
+            newMessage(userId: "1",text: messageText, sentByMe: true)
             messageTextField.text = ""
         }
     }

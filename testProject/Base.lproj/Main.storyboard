@@ -312,7 +312,7 @@
                                                     <rect key="frame" x="70" y="11" width="150" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="ZcV-Yi-awq"/>
-                                                        <constraint firstAttribute="width" constant="150" id="wsJ-nH-rDs"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="wsJ-nH-rDs"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -322,7 +322,7 @@
                                                     <rect key="frame" x="72" y="44" width="200" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="Zib-8e-EIL"/>
-                                                        <constraint firstAttribute="width" constant="200" id="raF-R8-o9L"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="raF-R8-o9L"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="opaqueSeparatorColor"/>
@@ -344,10 +344,24 @@
                                                         <constraint firstAttribute="width" constant="50" id="gQo-Ms-eJQ"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Count" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOb-t9-fa0">
+                                                    <rect key="frame" x="336.66666666666669" y="35" width="46.333333333333314" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="AMi-re-Lai"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="kDU-B9-5B6"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="jhr-rX-t0B" firstAttribute="leading" secondItem="Zpz-FF-2QP" secondAttribute="leading" constant="10" id="4kJ-Bt-gB1"/>
+                                                <constraint firstAttribute="trailing" secondItem="jOb-t9-fa0" secondAttribute="trailing" constant="10" id="7mD-3A-wux"/>
                                                 <constraint firstAttribute="trailing" secondItem="J20-UI-DM3" secondAttribute="trailing" constant="10" id="Cq1-uD-eCj"/>
+                                                <constraint firstItem="jOb-t9-fa0" firstAttribute="bottom" secondItem="jhr-rX-t0B" secondAttribute="bottom" id="GZw-Dh-CYY"/>
+                                                <constraint firstItem="jOb-t9-fa0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DRT-Zh-oSa" secondAttribute="trailing" constant="8" symbolic="YES" id="NDK-7p-Qsr"/>
+                                                <constraint firstItem="J20-UI-DM3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4gX-T7-T2I" secondAttribute="trailing" constant="8" symbolic="YES" id="NwS-OX-Gnd"/>
                                                 <constraint firstItem="J20-UI-DM3" firstAttribute="top" secondItem="Zpz-FF-2QP" secondAttribute="top" constant="10" id="WRF-9h-RsG"/>
                                                 <constraint firstItem="4gX-T7-T2I" firstAttribute="top" secondItem="Zpz-FF-2QP" secondAttribute="topMargin" id="aTa-DH-qpq"/>
                                                 <constraint firstItem="DRT-Zh-oSa" firstAttribute="leading" secondItem="jhr-rX-t0B" secondAttribute="trailing" constant="12" id="cd3-Ph-o2A"/>
@@ -358,6 +372,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="newMessageCount" destination="jOb-t9-fa0" id="bow-Kn-b8G"/>
                                             <outlet property="timeLabel" destination="J20-UI-DM3" id="JWW-YO-fKU"/>
                                             <outlet property="userMessageLabel" destination="DRT-Zh-oSa" id="jda-6l-2np"/>
                                             <outlet property="userNameLabel" destination="4gX-T7-T2I" id="0Px-ME-Rgz"/>

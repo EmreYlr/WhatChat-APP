@@ -26,6 +26,8 @@
 		C32D601D2A642ACD006ACAEE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D601C2A642ACD006ACAEE /* UserService.swift */; };
 		C32D60272A64651A006ACAEE /* UserTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D60262A64651A006ACAEE /* UserTokenRequest.swift */; };
 		C32D602A2A646632006ACAEE /* GrantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D60292A646632006ACAEE /* GrantType.swift */; };
+		C33A40242A73D99A0089C2DC /* GetMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33A40232A73D99A0089C2DC /* GetMessage.swift */; };
+		C33A40262A73DBCA0089C2DC /* HomeGetMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33A40252A73DBCA0089C2DC /* HomeGetMessage.swift */; };
 		C38161612A7146B6004912A0 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38161602A7146B6004912A0 /* ContactsViewModel.swift */; };
 		C38161632A7164B3004912A0 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38161622A7164B3004912A0 /* MessageViewModel.swift */; };
 		C39800052A7011E800E39519 /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39800042A7011E800E39519 /* NewContactViewController.swift */; };
@@ -79,6 +81,8 @@
 		C32D601C2A642ACD006ACAEE /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		C32D60262A64651A006ACAEE /* UserTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTokenRequest.swift; sourceTree = "<group>"; };
 		C32D60292A646632006ACAEE /* GrantType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrantType.swift; sourceTree = "<group>"; };
+		C33A40232A73D99A0089C2DC /* GetMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMessage.swift; sourceTree = "<group>"; };
+		C33A40252A73DBCA0089C2DC /* HomeGetMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGetMessage.swift; sourceTree = "<group>"; };
 		C38161602A7146B6004912A0 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		C38161622A7164B3004912A0 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		C39800042A7011E800E39519 /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
@@ -138,11 +142,11 @@
 		C30F48802A5D74B8002F0534 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C33A40222A73D9880089C2DC /* Message */,
 				C3C9399E2A6AB76B0099D914 /* Client */,
 				C32D60222A64628E006ACAEE /* User */,
 				C398000C2A702DB400E39519 /* Room */,
 				C30655452A607281009E7CA1 /* RegisteredUser.swift */,
-				C3B7B7A42A6840A500C6257E /* ChatMessage.swift */,
 				C3C939A02A6AB8190099D914 /* LoggedUser.swift */,
 			);
 			path = Model;
@@ -250,6 +254,16 @@
 			children = (
 			);
 			path = response;
+			sourceTree = "<group>";
+		};
+		C33A40222A73D9880089C2DC /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				C3B7B7A42A6840A500C6257E /* ChatMessage.swift */,
+				C33A40232A73D99A0089C2DC /* GetMessage.swift */,
+				C33A40252A73DBCA0089C2DC /* HomeGetMessage.swift */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		C398000C2A702DB400E39519 /* Room */ = {
@@ -448,6 +462,7 @@
 				C39800052A7011E800E39519 /* NewContactViewController.swift in Sources */,
 				C30F487E2A5D6F52002F0534 /* LoginViewModel.swift in Sources */,
 				C39BDCC02A658DDA00305CEE /* HomeViewModel.swift in Sources */,
+				C33A40262A73DBCA0089C2DC /* HomeGetMessage.swift in Sources */,
 				C32D602A2A646632006ACAEE /* GrantType.swift in Sources */,
 				C39BDCC42A659CBF00305CEE /* UserTokenService.swift in Sources */,
 				C32715872A5AFDF60018D869 /* LoginViewController.swift in Sources */,
@@ -465,6 +480,7 @@
 				C3CA9A4F2A61C68C00C89ADD /* ResetPasswordViewModel.swift in Sources */,
 				C317055C2A729EB3008E69D2 /* GroupNameViewModel.swift in Sources */,
 				C3EC43362A6ED2EF006BB10E /* MessageService.swift in Sources */,
+				C33A40242A73D99A0089C2DC /* GetMessage.swift in Sources */,
 				C30116A02A5B36D20045DE7F /* User.swift in Sources */,
 				C3B7B79F2A68137500C6257E /* MessageViewController.swift in Sources */,
 				C32715852A5AFDF60018D869 /* SceneDelegate.swift in Sources */,

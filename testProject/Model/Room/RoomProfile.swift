@@ -10,7 +10,10 @@ struct RoomProfile: Codable{
     let roomId: Int
     let roomName: String?
     let userPhoneNo: String?
-    let lastMessage: String?
-    let lastMessageTime: String?
+    var lastMessage: String?
+    var lastMessageTime: String?
     let roomPhoto: String?
+    let isGroup: Bool
+    let lastMessageUserPhoneNo: String?
+    let roomCreateDate: String
 }
