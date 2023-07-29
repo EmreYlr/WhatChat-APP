@@ -128,15 +128,8 @@ extension HomeViewController{
             if let index = rooms.firstIndex(where: { $0.roomId == homeGetMessage.roomId }) {
                 let topIndexPath = IndexPath(row: index, section: 0)
                 chatTableView.scrollToRow(at: topIndexPath, at: .top, animated: true)
-                
-                if rooms[index].roomName == nil{
-                    rooms[index].lastMessage = homeGetMessage.content
-                }else{
-                    rooms[index].lastMessage = "\(homeGetMessage.phoneNo):\(homeGetMessage.content)"
-                }
-
+                rooms[index].lastMessage = homeGetMessage.content
                 rooms[index].lastMessageTime = homeGetMessage.sentAt
-                
                 let room = rooms.remove(at: index)
                 rooms.insert(room, at: 0)
                 chatTableView.reloadData()

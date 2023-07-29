@@ -42,7 +42,6 @@ class MessageViewController: UIViewController{
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        manager.disconnect()
         socket.disconnect()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -89,6 +88,7 @@ extension MessageViewController{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let newMessage = ChatMessage(userPhoneNo: userId,message: text, sentByMe: sentByMe, sentAt: dateFormatter.string(from: Date()))
+//        let newMessage = ChatMessage(userPhoneNo: sentByMe ? "You" : userId, message: text, sentByMe: sentByMe, sentAt: dateFormatter.string(from: Date()))
         let calendar = Calendar.current
         let lastMessage = chatMessages.last?.first
         
