@@ -12,7 +12,6 @@ class MessageTableViewCell: UITableViewCell {
     var trailingConstraint: NSLayoutConstraint!
     let messageLabel = UILabel()
     let bubbleBackgroundView = UIView()
-//    var previousUserPhoneNo: String?
 
     var chatMessage: ChatMessage!{
         didSet{
@@ -25,15 +24,8 @@ class MessageTableViewCell: UITableViewCell {
             }else{
                 leadingConstraint.isActive = true
                 trailingConstraint.isActive = false
+                
             }
-//            if chatMessage.userPhoneNo != previousUserPhoneNo {
-//                messageLabel.text = "\(chatMessage.userPhoneNo): \(chatMessage.message)"
-//            } else {
-//                messageLabel.text = chatMessage.message
-//            }
-//
-//            // Update the previousUserPhoneNo with the current user's phone number
-//            previousUserPhoneNo = chatMessage.userPhoneNo
         }
     }
     

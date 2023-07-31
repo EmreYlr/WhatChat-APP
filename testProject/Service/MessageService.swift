@@ -7,5 +7,5 @@
 
 import Foundation
 class MessageService{
-    final let urlAdress = "http://ec2-3-69-241-182.eu-central-1.compute.amazonaws.com:8080"
+    final let urlAdress = "http://3.71.199.20:8082"
 }

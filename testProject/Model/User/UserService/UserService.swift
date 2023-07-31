@@ -14,6 +14,7 @@ class UserService{
 
     func requestDecodable<T: Codable, R: Codable>(url: URL ,method: HTTPMethod,parameters: R?, headers: HTTPHeaders,completion: @escaping(T?) -> Void){
         AF.request(url, method: method, parameters: parameters, headers: headers).responseDecodable(of: T.self){ response in
+            debugPrint(response)
             switch response.response?.statusCode{
             case 401:
                 print("Bağlantı Hatası")

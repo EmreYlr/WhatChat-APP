@@ -44,7 +44,7 @@ class RegisterViewController: UIViewController{
     }
     
     func registerUser(name: String, surname: String, email: String, password:String, phoneNo: String){
-        startLoader()
+        //startLoader()
         user = User(enabled: true, firstName: name, lastName: surname, email: email,username: phoneNo, credentials: [Credential(type: "password", value: password, temporary: false)])
         self.registerViewModel.registerUser(user: user!) { statusCode in
             if let statusCode = statusCode{
@@ -69,7 +69,7 @@ class RegisterViewController: UIViewController{
                 }
             }
         }
-        self.stopLoader()
+        //self.stopLoader()
     }
 }
 extension RegisterViewController{

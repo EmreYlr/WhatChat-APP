@@ -28,7 +28,27 @@ final class UserTokenService{
             }
         }
         return nil
-    }
+    }/*
+    func refreshToken(comletion: @escaping(Bool) -> Void){
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+        let url = URL(string: "\(services.urlAdress)/realms/test_realm/protocol/openid-connect/token/")!
+        if let getUserToken = getUserTokenFromUserDefaults(){
+            let user = UserTokenRequest(refreshToken: getUserToken.refreshToken,grantType: .REFRESH_TOKEN)
+            userService.requestDecodable(url: url, method: .post, parameters: user , headers: headers) { (response: UserToken?)  in
+                if let token = response {
+                    self.setUserTokenFromUserDefaults(userToken: token)
+                    comletion(true)
+                }
+                else{
+                    self.setUserTokenFromUserDefaults(userToken: nil)
+                }
+            }
+        }else{
+            comletion(false)
+        }
+    }*/
     
     func getLoggedUser() -> LoggedUser?{
         do{

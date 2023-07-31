@@ -15,7 +15,7 @@ class MessageViewController: UIViewController{
     fileprivate let cellId = "messageCell"
     var room: RoomId?
     
-    let manager = SocketManager(socketURL: URL(string: "http://ec2-3-69-241-182.eu-central-1.compute.amazonaws.com:8082")!,config: [.log(true), .compress ])
+    let manager = SocketManager(socketURL: URL(string: "http://3.71.199.20:8085")!,config: [.log(true), .compress ])
     var socket: SocketIOClient!
     
     var messagesFromServer = [ChatMessage]()
@@ -62,7 +62,6 @@ extension MessageViewController{
                 print("error")
             }
         }
-        
     }
     
     func addHandler(){
@@ -88,7 +87,7 @@ extension MessageViewController{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let newMessage = ChatMessage(userPhoneNo: userId,message: text, sentByMe: sentByMe, sentAt: dateFormatter.string(from: Date()))
-//        let newMessage = ChatMessage(userPhoneNo: sentByMe ? "You" : userId, message: text, sentByMe: sentByMe, sentAt: dateFormatter.string(from: Date()))
+        
         let calendar = Calendar.current
         let lastMessage = chatMessages.last?.first
         
