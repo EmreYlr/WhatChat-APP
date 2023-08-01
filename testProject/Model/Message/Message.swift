@@ -6,8 +6,8 @@
 //
 
 import Foundation
-struct GetMessage:Codable{
-    let content: String
-    let userId: String
+struct Message:Codable{
+    let message: String
+    let phoneNo: String
     let sentAt: String
 }

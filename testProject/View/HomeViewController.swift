@@ -78,8 +78,12 @@ extension HomeViewController{
     }
     func addHandler(){
         socket.on("get_message") { (data, ack) in
-            if let message = data[0] as? [String: Any]{
-                let homeGetMessage = HomeGetMessage(content:message["content"] as! String ,phoneNo:message["phoneNo"] as! String, roomId: message["roomId"] as! Int,sentAt: message["sentAt"] as! String)
+            if let message = data[0] as? [String: Any],
+               let content = message["content"] as? String,
+               let phoneNo = message["userId"] as? String,
+               let roomId = message["roomId"] as? Int,
+                let sentAt = message["sentAt"] as? String{
+                let homeGetMessage = HomeGetMessage(content:content ,phoneNo:phoneNo, roomId: roomId,sentAt: sentAt)
                 
                 self.newMessage(homeGetMessage: homeGetMessage)
             }

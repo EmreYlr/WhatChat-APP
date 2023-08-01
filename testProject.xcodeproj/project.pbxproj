@@ -26,7 +26,7 @@
 		C32D601D2A642ACD006ACAEE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D601C2A642ACD006ACAEE /* UserService.swift */; };
 		C32D60272A64651A006ACAEE /* UserTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D60262A64651A006ACAEE /* UserTokenRequest.swift */; };
 		C32D602A2A646632006ACAEE /* GrantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D60292A646632006ACAEE /* GrantType.swift */; };
-		C33A40242A73D99A0089C2DC /* GetMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33A40232A73D99A0089C2DC /* GetMessage.swift */; };
+		C33A40242A73D99A0089C2DC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33A40232A73D99A0089C2DC /* Message.swift */; };
 		C33A40262A73DBCA0089C2DC /* HomeGetMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33A40252A73DBCA0089C2DC /* HomeGetMessage.swift */; };
 		C38161612A7146B6004912A0 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38161602A7146B6004912A0 /* ContactsViewModel.swift */; };
 		C38161632A7164B3004912A0 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38161622A7164B3004912A0 /* MessageViewModel.swift */; };
@@ -81,7 +81,7 @@
 		C32D601C2A642ACD006ACAEE /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		C32D60262A64651A006ACAEE /* UserTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTokenRequest.swift; sourceTree = "<group>"; };
 		C32D60292A646632006ACAEE /* GrantType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrantType.swift; sourceTree = "<group>"; };
-		C33A40232A73D99A0089C2DC /* GetMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMessage.swift; sourceTree = "<group>"; };
+		C33A40232A73D99A0089C2DC /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C33A40252A73DBCA0089C2DC /* HomeGetMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGetMessage.swift; sourceTree = "<group>"; };
 		C38161602A7146B6004912A0 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		C38161622A7164B3004912A0 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				C3B7B7A42A6840A500C6257E /* ChatMessage.swift */,
-				C33A40232A73D99A0089C2DC /* GetMessage.swift */,
+				C33A40232A73D99A0089C2DC /* Message.swift */,
 				C33A40252A73DBCA0089C2DC /* HomeGetMessage.swift */,
 			);
 			path = Message;
@@ -480,7 +480,7 @@
 				C3CA9A4F2A61C68C00C89ADD /* ResetPasswordViewModel.swift in Sources */,
 				C317055C2A729EB3008E69D2 /* GroupNameViewModel.swift in Sources */,
 				C3EC43362A6ED2EF006BB10E /* MessageService.swift in Sources */,
-				C33A40242A73D99A0089C2DC /* GetMessage.swift in Sources */,
+				C33A40242A73D99A0089C2DC /* Message.swift in Sources */,
 				C30116A02A5B36D20045DE7F /* User.swift in Sources */,
 				C3B7B79F2A68137500C6257E /* MessageViewController.swift in Sources */,
 				C32715852A5AFDF60018D869 /* SceneDelegate.swift in Sources */,

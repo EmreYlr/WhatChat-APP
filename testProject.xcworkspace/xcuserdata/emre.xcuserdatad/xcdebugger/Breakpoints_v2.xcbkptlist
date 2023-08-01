@@ -52,5 +52,53 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F233D78C-A168-4219-9544-9FC86FCEA7F1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "testProject/VI&#x307;ewModel/ContactsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "addNewContact(phoneNumbers:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F233D78C-A168-4219-9544-9FC86FCEA7F1 - 402693538d35e08b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "testProject.ContactViewModel.addNewContact(phoneNumbers: testProject.PhoneNumbers, completion: (Swift.Optional&lt;testProject.RoomId&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "testProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emre/Desktop/testProject/testProject/VI%CC%87ewModel/ContactsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "984">
+               </Location>
+               <Location
+                  uuid = "F233D78C-A168-4219-9544-9FC86FCEA7F1 - cbf592f93e28725f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;testProject.RoomId&gt;) -&gt; () in testProject.ContactViewModel.addNewContact(phoneNumbers: testProject.PhoneNumbers, completion: (Swift.Optional&lt;testProject.RoomId&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "testProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emre/Desktop/testProject/testProject/VI%CC%87ewModel/ContactsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -66,27 +66,27 @@ extension MessageViewController{
     
     func addHandler(){
         socket.on("get_message") { (data, ack) in
-            if let message = data[0] as? [String: Any],
-               let content = message["content"] as? String,
-               let userId = message["userId"] as? String,
-                let sentAt = message["sentAt"] as? String{
-                let getMessage = GetMessage(content: content, userId: userId, sentAt: sentAt)
+            if let data = data[0] as? [String: Any],
+               let message = data["message"] as? String,
+               let phoneNo = data["phoneNo"] as? String,
+                let sentAt = data["sentAt"] as? String{
+                let newMessage = Message(message: message, phoneNo: phoneNo, sentAt: sentAt)
                 DispatchQueue.main.async {
-                    self.newMessage(userId: getMessage.userId, text: getMessage.content, sentByMe: false)
+                    self.newMessage(message:newMessage, sentByMe: false)
                 }
             }
         }
     }
     
     func sendMessage(content: String) {
-        let message = ["userId":userTokenService.getLoggedUser()?.userId,"content": content]
+        let message = ["userId":userTokenService.getLoggedUser()?.userId,"message": content]
         socket.emit("send_message", message)
     }
     
-    func newMessage(userId: String,text: String, sentByMe: Bool) {
+    func newMessage(message: Message,sentByMe: Bool) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
-        let newMessage = ChatMessage(userPhoneNo: userId,message: text, sentByMe: sentByMe, sentAt: dateFormatter.string(from: Date()))
+        let newMessage = ChatMessage(userPhoneNo:message.phoneNo,message: message.message, sentByMe: sentByMe, sentAt: dateFormatter.string(from: Date()))
         
         let calendar = Calendar.current
         let lastMessage = chatMessages.last?.first
@@ -137,9 +137,12 @@ extension MessageViewController{
 //MARK: Button
 extension MessageViewController{
     @IBAction func sendButtonPressed(_ sender: UIButton) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
         if let messageText = messageTextField.text, !messageText.isEmpty {
             sendMessage(content: messageText)
-            newMessage(userId: "1",text: messageText, sentByMe: true)
+            let message = Message(message: messageText, phoneNo: userTokenService.getLoggedUser()!.username, sentAt: dateFormatter.string(from: Date()))
+            newMessage(message:message, sentByMe: true)
             messageTextField.text = ""
         }
     }
