@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     let homeViewModel: HomeViewModel = HomeViewModel()
     @IBOutlet weak var chatTableView: UITableView!
     let addButton = UIButton()
+    let refreshControl = UIRefreshControl()
     fileprivate let cellId = "userCell"
     var rooms = [RoomProfile]()
     var messageCounts: [Int: Int] = [:]
@@ -28,9 +29,11 @@ class HomeViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: false)
         chatTableView.dataSource = self
         chatTableView.delegate = self
+        refreshTableView()
         addUserButton()
         addHandler()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         socket.connect()
@@ -47,10 +50,7 @@ class HomeViewController: UIViewController {
 //MARK: Button
 extension HomeViewController{
     @IBAction func singOutButton(_ sender: UIBarButtonItem) {
-        homeViewModel.logoutUser()
-        // Emin misin sorusunu sor
-        backLoginScreen()
-        self.navigationController?.popViewController(animated: true)
+        showLogoutAlert()
     }
     
     func addUserButton(){
@@ -100,7 +100,25 @@ extension HomeViewController{
 }
 //MARK: DATA
 extension HomeViewController{
-    
+    func refreshTableView(){
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        chatTableView.addSubview(refreshControl)
+    }
+    @objc func refresh(_ sender: AnyObject) {
+        chatTableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    func showLogoutAlert() {
+        let alert = UIAlertController(title: "Are you sure you want to logout??", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+            self.homeViewModel.logoutUser()
+            self.backLoginScreen()
+            self.navigationController?.popViewController(animated: true)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
     func backLoginScreen(){
         if let loginVC = self.navigationController?.viewControllers.first as? LoginViewController{
             loginVC.passwordTextField.text = ""

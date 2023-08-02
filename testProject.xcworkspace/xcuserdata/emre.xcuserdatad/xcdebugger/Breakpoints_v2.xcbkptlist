@@ -55,64 +55,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F654C4B8-3741-4CC1-A31E-800E8024F482"
+            uuid = "C9BA6311-DF0E-44A4-9746-8AB6D65AC0FB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "testProject/Model/User/UserService/UserService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "requestDecodableTokens(url:method:parameters:headers:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F654C4B8-3741-4CC1-A31E-800E8024F482 - b4ceef82f55ed7bf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;&#x3c4;_0_0, Alamofire.AFError&gt;) -&gt; () in testProject.UserService.requestDecodableTokens&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable, &#x3c4;_0_1: Swift.Decodable, &#x3c4;_0_1: Swift.Encodable&gt;(url: Foundation.URL, method: Alamofire.HTTPMethod, parameters: Swift.Optional&lt;&#x3c4;_0_1&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, completion: (Swift.Optional&lt;&#x3c4;_0_0&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "testProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/emre/Desktop/testProject/testProject/Model/User/UserService/UserService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65"
-                  offsetFromSymbolStart = "1776">
-               </Location>
-               <Location
-                  uuid = "F654C4B8-3741-4CC1-A31E-800E8024F482 - 6643fd91dbc35620"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in closure #1 (Alamofire.DataResponse&lt;&#x3c4;_0_0, Alamofire.AFError&gt;) -&gt; () in testProject.UserService.requestDecodableTokens&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable, &#x3c4;_0_1: Swift.Decodable, &#x3c4;_0_1: Swift.Encodable&gt;(url: Foundation.URL, method: Alamofire.HTTPMethod, parameters: Swift.Optional&lt;&#x3c4;_0_1&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, completion: (Swift.Optional&lt;&#x3c4;_0_0&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "testProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/emre/Desktop/testProject/testProject/Model/User/UserService/UserService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "280">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A5E508E6-0EBA-42E2-A88D-4FCFD2E61BEF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "testProject/Model/User/UserService/UserService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "requestDecodable(url:method:headers:completion:)"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "logoutUser()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

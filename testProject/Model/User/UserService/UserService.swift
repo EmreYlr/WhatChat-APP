@@ -70,10 +70,6 @@ class UserService{
                             completion(response.value)
                         }
                     }
-                    else {
-                        self.logoutUser()
-                        completion(nil)
-                    }
                 }
                 break
             default:
@@ -95,10 +91,7 @@ class UserService{
                             //debugPrint(response)
                             completion(response.value)
                         }
-                    } else {
-                        self.logoutUser()
-                        completion(nil)
-                    }
+                    } 
                 }
                 break
             default:

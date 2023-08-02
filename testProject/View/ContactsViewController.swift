@@ -9,6 +9,7 @@ import UIKit
 import Contacts
 class ContactsViewController: UIViewController {
     @IBOutlet weak var contactsTableView: UITableView!
+    let refreshControl = UIRefreshControl()
     var contectsViewModel : ContactViewModel = ContactViewModel()
     var contacts = [CNContact]()
     var selectedContacts = Set<CNContact>()
@@ -19,6 +20,7 @@ class ContactsViewController: UIViewController {
         contactsTableView.delegate = self
         contactsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         contactsTableView.allowsMultipleSelection = true
+        refreshTableView()
         showDoneButton()
     }
     
@@ -29,7 +31,20 @@ class ContactsViewController: UIViewController {
         contactsTableView.reloadData()
     }
 }
-
+//MARK: DATA
+extension ContactsViewController{
+    func refreshTableView(){
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        contactsTableView.addSubview(refreshControl)
+    }
+    @objc func refresh(_ sender: AnyObject) {
+        contacts.removeAll()
+        fetchContacts()
+        contactsTableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+}
 //MARK: BUTTON
 extension ContactsViewController{
     func isContactSelected(_ contact: CNContact) -> Bool {
@@ -165,7 +180,4 @@ extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 }
-//MARK: ALERT
-extension ContactsViewController{
-    
-}
+
