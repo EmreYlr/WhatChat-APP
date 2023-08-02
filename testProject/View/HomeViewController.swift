@@ -8,7 +8,7 @@
 import UIKit
 import JWTDecode
 import SocketIO
-
+import Contacts
 class HomeViewController: UIViewController {
     let userTokenService: UserTokenService = UserTokenService()
     let homeViewModel: HomeViewModel = HomeViewModel()
@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
     var messageCounts: [Int: Int] = [:]
     var selectedRoomId: Int?
     
-    let manager = SocketManager(socketURL: URL(string: "http://3.71.199.20:8085")!,config: [.log(true), .compress ])
+    var manager = SocketManager(socketURL: URL(string: "http://3.71.199.20:8085")!,config: [.log(true), .compress ])
     var socket: SocketIOClient!
     
     override func viewDidLoad() {
@@ -33,11 +33,16 @@ class HomeViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //TODO: Mesajları dinle
+        socket.connect()
         selectedRoomId = nil
         getAllRoom()
+        
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        manager.disconnect()
+        socket.disconnect()
+    }
+
 }
 //MARK: Button
 extension HomeViewController{
@@ -80,7 +85,7 @@ extension HomeViewController{
         socket.on("get_message") { (data, ack) in
             if let message = data[0] as? [String: Any],
                let content = message["content"] as? String,
-               let phoneNo = message["userId"] as? String,
+               let phoneNo = message["phoneNo"] as? String,
                let roomId = message["roomId"] as? Int,
                 let sentAt = message["sentAt"] as? String{
                 let homeGetMessage = HomeGetMessage(content:content ,phoneNo:phoneNo, roomId: roomId,sentAt: sentAt)
@@ -95,6 +100,7 @@ extension HomeViewController{
 }
 //MARK: DATA
 extension HomeViewController{
+    
     func backLoginScreen(){
         if let loginVC = self.navigationController?.viewControllers.first as? LoginViewController{
             loginVC.passwordTextField.text = ""
@@ -113,6 +119,7 @@ extension HomeViewController{
         homeViewModel.getAllRooms(completion: { room in
             if let room = room{
                 self.rooms = room
+                //self.phoneNoToName(phoneNumbers: self.getAllPhoneNo())
                 self.chatTableView.reloadData()
             }
         })
@@ -154,15 +161,12 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userProfile = rooms[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! userTableViewCell
-        
         let lastMessageUserPhoneNo = "\(userProfile.lastMessageUserPhoneNo ?? ""): "
-        
-        
         if userProfile.isGroup{
             cell.userNameLabel.text = userProfile.roomName
             cell.userMessageLabel.text = (userProfile.lastMessageUserPhoneNo != nil) ? "\(lastMessageUserPhoneNo)\(userProfile.lastMessage ?? "")" : " "
         }else{
-            cell.userNameLabel.text = userProfile.userPhoneNo
+            cell.userNameLabel.text = getContactName(for: userProfile.userPhoneNo!)
             cell.userMessageLabel.text = userProfile.lastMessage
         }
         cell.userProfileImage.image = UIImage(named: userProfile.roomPhoto ?? "DefaultProfile.svg")
@@ -185,6 +189,34 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         performSegue(withIdentifier: "showMessageView", sender: roomId)
     }
     
+    
+}
+//MARK: CONTACT
+extension HomeViewController{
+    func getContactName(for phoneNumber: String) -> String? {
+        let store = CNContactStore()
+        var contactName: String?
+        store.requestAccess(for: .contacts) { granted, error in
+            if granted {
+                let keys = [CNContactGivenNameKey, CNContactFamilyNameKey]
+                let predicate = CNContact.predicateForContacts(matching: CNPhoneNumber(stringValue: phoneNumber))
+                let fetchRequest = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+                fetchRequest.predicate = predicate
+                
+                do {
+                    try store.enumerateContacts(with: fetchRequest) { contact, stop in
+                        contactName = [contact.givenName, contact.familyName].compactMap { $0 }.joined(separator: " ")
+                        stop.pointee = true
+                    }
+                } catch {
+                    print("Hata oluştu: \(error)")
+                }
+            } else {
+                print("Rehbere erişim izni reddedildi.")
+            }
+        }
+        return contactName
+    }
 }
 //MARK: Date
 extension HomeViewController{

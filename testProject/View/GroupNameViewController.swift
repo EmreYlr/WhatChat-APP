@@ -36,7 +36,7 @@ extension GroupNameViewController{
         let groupRoom = GroupRoom(userPhoneList: phoneNumbers, roomName: groupName)
         groupNameViewModel.addNewGroup(groupRoom: groupRoom) { roomId in
             if let roomId = roomId{
-                    
+                print(roomId)
             }else{
                 self.Alert(title: "Error", alertMessage: "These people are not on TestApp")
             }

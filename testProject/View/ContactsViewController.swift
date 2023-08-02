@@ -76,6 +76,7 @@ extension ContactsViewController{
         contectsViewModel.addNewContact(phoneNumbers: phoneNumbers) { roomId in
             if let roomId = roomId?.roomId{
                 //let room = RoomId(roomId: roomId)
+                print(roomId)
                 self.navigationController?.popViewController(animated: true)
             }else{
                 self.Alert(title: "Error", alertMessage: "This person is not on TestApp")

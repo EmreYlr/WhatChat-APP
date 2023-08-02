@@ -32,7 +32,7 @@ class MessageTableViewCell: UITableViewCell {
                 trailingConstraint.isActive = false
                 
             }
-            //previousPhoneNumber = chatMessage.userPhoneNo
+//            previousPhoneNumber = chatMessage.userPhoneNo
         }
     }
     

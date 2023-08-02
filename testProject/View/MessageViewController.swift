@@ -29,10 +29,8 @@ class MessageViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager.setConfigs([.connectParams(["room": room!.roomId])]) //TODO: Room kontrol et ve alert ver
-        socket = manager.defaultSocket
+        socketSetupIO()
         addHandler()
-        socket.connect()
         messageTableView.dataSource = self
         messageTableView.delegate = self
         messageTableView.register(MessageTableViewCell.self, forCellReuseIdentifier: cellId)
@@ -42,11 +40,35 @@ class MessageViewController: UIViewController{
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        manager.disconnect()
         socket.disconnect()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getAllMessage(roomId: room!)
+    }
+}
+
+//MARK: SOCKET
+extension MessageViewController{
+    func socketSetupIO(){
+        let roomId = room!.roomId
+        manager.setConfigs([.connectParams(["room": roomId])]) //TODO: Room kontrol et ve alert ver
+        socket = manager.defaultSocket
+        socket.connect()
+    }
+    func addHandler(){
+        socket.on("get_message") { (data, ack) in
+            if let data = data[0] as? [String: Any],
+               let message = data["message"] as? String,
+               let phoneNo = data["phoneNo"] as? String,
+                let sentAt = data["sentAt"] as? String{
+                let newMessage = Message(message: message, phoneNo: phoneNo, sentAt: sentAt)
+                DispatchQueue.main.async {
+                    self.newMessage(message:newMessage, sentByMe: false)
+                }
+            }
+        }
     }
 }
 //MARK: MESSAGE
@@ -60,20 +82,6 @@ extension MessageViewController{
                 self.scrollToBottom(animated: false)
             }else{
                 print("error")
-            }
-        }
-    }
-    
-    func addHandler(){
-        socket.on("get_message") { (data, ack) in
-            if let data = data[0] as? [String: Any],
-               let message = data["message"] as? String,
-               let phoneNo = data["phoneNo"] as? String,
-                let sentAt = data["sentAt"] as? String{
-                let newMessage = Message(message: message, phoneNo: phoneNo, sentAt: sentAt)
-                DispatchQueue.main.async {
-                    self.newMessage(message:newMessage, sentByMe: false)
-                }
             }
         }
     }

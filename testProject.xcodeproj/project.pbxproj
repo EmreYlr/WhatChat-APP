@@ -48,6 +48,7 @@
 		C3CA9A4D2A61C26400C89ADD /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A4C2A61C26400C89ADD /* ResetPasswordViewController.swift */; };
 		C3CA9A4F2A61C68C00C89ADD /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */; };
 		C3CA9A512A61D04800C89ADD /* ClientTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9A502A61D04800C89ADD /* ClientTokenService.swift */; };
+		C3DED87C2A7A88E400709AC9 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DED87B2A7A88E400709AC9 /* SocketService.swift */; };
 		C3EC43362A6ED2EF006BB10E /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC43352A6ED2EF006BB10E /* MessageService.swift */; };
 		C3EC43382A6EEC90006BB10E /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC43372A6EEC90006BB10E /* ContactsViewController.swift */; };
 		C3EFD94B2A5EC62D0075BCD1 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EFD94A2A5EC62D0075BCD1 /* Services.swift */; };
@@ -103,6 +104,7 @@
 		C3CA9A4C2A61C26400C89ADD /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		C3CA9A4E2A61C68C00C89ADD /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		C3CA9A502A61D04800C89ADD /* ClientTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTokenService.swift; sourceTree = "<group>"; };
+		C3DED87B2A7A88E400709AC9 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
 		C3EC43352A6ED2EF006BB10E /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
 		C3EC43372A6EEC90006BB10E /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		C3EFD94A2A5EC62D0075BCD1 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			children = (
 				C3EFD94A2A5EC62D0075BCD1 /* Services.swift */,
 				C3EC43352A6ED2EF006BB10E /* MessageService.swift */,
+				C3DED87B2A7A88E400709AC9 /* SocketService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				C38161612A7146B6004912A0 /* ContactsViewModel.swift in Sources */,
 				C3EFD94D2A5EDC780075BCD1 /* MutualExtension.swift in Sources */,
 				C398000B2A701D9C00E39519 /* RoomId.swift in Sources */,
+				C3DED87C2A7A88E400709AC9 /* SocketService.swift in Sources */,
 				C3EFD94B2A5EC62D0075BCD1 /* Services.swift in Sources */,
 				C3B7B7A12A6817FD00C6257E /* MessageTableViewCell.swift in Sources */,
 				C3C839CE2A5D8A6800FC8F2D /* RegisterViewController.swift in Sources */,
