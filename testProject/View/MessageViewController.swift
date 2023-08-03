@@ -14,6 +14,7 @@ class MessageViewController: UIViewController{
     var messageViewModel: MessageViewModel = MessageViewModel()
     fileprivate let cellId = "messageCell"
     var room: RoomId?
+    var isGroup: Bool?
     
     let manager = SocketManager(socketURL: URL(string: "http://3.71.199.20:8085")!,config: [.log(true), .compress ])
     var socket: SocketIOClient!
@@ -186,8 +187,11 @@ extension MessageViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MessageTableViewCell
+        cell.isGroup = isGroup ?? false
         let chatMessage = chatMessages[indexPath.section][indexPath.row]
+        cell.previousPhoneNumber = indexPath.row > 0 ? chatMessages[indexPath.section][indexPath.row - 1].userPhoneNo : nil
         cell.chatMessage = chatMessage
+        
         return cell
         
     }

@@ -128,8 +128,10 @@ extension HomeViewController{
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMessageView" {
-            if let messageVC = segue.destination as? MessageViewController {
-                messageVC.room =  sender as! RoomId?
+            if let senderData = sender as? (roomId: RoomId, isGroup: Bool),
+               let destinationViewController = segue.destination as? MessageViewController {
+                destinationViewController.room = senderData.roomId
+                destinationViewController.isGroup = senderData.isGroup
             }
         }
     }
@@ -137,7 +139,6 @@ extension HomeViewController{
         homeViewModel.getAllRooms(completion: { room in
             if let room = room{
                 self.rooms = room
-                //self.phoneNoToName(phoneNumbers: self.getAllPhoneNo())
                 self.chatTableView.reloadData()
             }
         })
@@ -184,7 +185,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
             cell.userNameLabel.text = userProfile.roomName
             cell.userMessageLabel.text = (userProfile.lastMessageUserPhoneNo != nil) ? "\(lastMessageUserPhoneNo)\(userProfile.lastMessage ?? "")" : " "
         }else{
-            cell.userNameLabel.text = getContactName(for: userProfile.userPhoneNo!)
+            if getContactName(for: userProfile.userPhoneNo!) == nil{
+                cell.userNameLabel.text = userProfile.userPhoneNo!
+            }else{
+                cell.userNameLabel.text = getContactName(for: userProfile.userPhoneNo!)
+            }
             cell.userMessageLabel.text = userProfile.lastMessage
         }
         cell.userProfileImage.image = UIImage(named: userProfile.roomPhoto ?? "DefaultProfile.svg")
@@ -204,7 +209,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         selectedRoomId = room.roomId
         messageCounts[selectedRoomId!] = 0
         let roomId = RoomId(roomId: room.roomId)
-        performSegue(withIdentifier: "showMessageView", sender: roomId)
+        let isGroup = room.isGroup
+        let senderData: (roomId: RoomId, isGroup: Bool) = (roomId, isGroup)
+        performSegue(withIdentifier: "showMessageView", sender: senderData)
     }
     
     
