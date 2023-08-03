@@ -180,8 +180,15 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userProfile = rooms[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! userTableViewCell
-        let lastMessageUserPhoneNo = "\(userProfile.lastMessageUserPhoneNo ?? ""): "
         if userProfile.isGroup{
+            let lastMessageUserPhoneNo: String
+            if userProfile.lastMessageUserPhoneNo == userTokenService.getLoggedUser()?.username{
+                lastMessageUserPhoneNo = "You: "
+            }else{
+                lastMessageUserPhoneNo = "\(getContactName(for: userProfile.lastMessageUserPhoneNo!) ?? userProfile.lastMessageUserPhoneNo!): "
+            }
+            
+            
             cell.userNameLabel.text = userProfile.roomName
             cell.userMessageLabel.text = (userProfile.lastMessageUserPhoneNo != nil) ? "\(lastMessageUserPhoneNo)\(userProfile.lastMessage ?? "")" : " "
         }else{
