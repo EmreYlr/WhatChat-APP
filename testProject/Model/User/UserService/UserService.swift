@@ -58,7 +58,7 @@ class UserService{
     func requestDecodableTokens<T: Codable, R: Codable>(url: URL ,method: HTTPMethod,parameters: R?, headers: Dictionary<String, String>? = nil,completion: @escaping(T?) -> Void){
         var authHeaders = userServiceMutualHeaders(headers: headers)
         AF.request(url, method: method, parameters: parameters,encoder: JSONParameterEncoder.default, headers: authHeaders).responseDecodable(of: T.self){ response in
-            //debugPrint(response)
+            debugPrint(response)
             switch response.response?.statusCode{
             case 401:
                 print("Bağlantı Hatası")

@@ -185,7 +185,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
             if userProfile.lastMessageUserPhoneNo == userTokenService.getLoggedUser()?.username{
                 lastMessageUserPhoneNo = "You: "
             }else{
-                lastMessageUserPhoneNo = "\(getContactName(for: userProfile.lastMessageUserPhoneNo!) ?? userProfile.lastMessageUserPhoneNo!): "
+                lastMessageUserPhoneNo = "\(getContactName(for: userProfile.lastMessageUserPhoneNo ?? "") ?? userProfile.lastMessageUserPhoneNo ?? ""): "
             }
             
             
