@@ -7,5 +7,5 @@
 
 import Foundation
 class SocketService{
-    final let urlAdress = "http://3.71.199.20:8085"
+    final let urlAdress = "http://3.68.83.204:8085"
 }

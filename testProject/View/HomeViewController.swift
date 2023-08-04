@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     var messageCounts: [Int: Int] = [:]
     var selectedRoomId: Int?
     
-    var manager = SocketManager(socketURL: URL(string: "http://3.71.199.20:8085")!,config: [.log(true), .compress ])
+    var manager = SocketManager(socketURL: URL(string: "http://3.68.83.204:8085")!,config: [.log(true), .compress ])
     var socket: SocketIOClient!
     
     override func viewDidLoad() {

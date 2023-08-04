@@ -18,19 +18,22 @@ class MessageTableViewCell: UITableViewCell {
 
     var chatMessage: ChatMessage!{
         didSet{
-            phoneNumberLabel.textColor = .orange
             bubbleBackgroundView.backgroundColor = chatMessage.sentByMe ? .darkGray : .white
             messageLabel.textColor = chatMessage.sentByMe ? .white: .black
             messageLabel.text = chatMessage.message
+            
             if chatMessage.sentByMe{
                 leadingConstraint.isActive = false
                 trailingConstraint.isActive = true
                 phoneNumberLabel.isHidden = true
             }else{
                 if isGroup{
+                    phoneNumberLabel.textColor = assignColorToPhoneNumber(chatMessage.userPhoneNo)
                     if let previousPhoneNumber = previousPhoneNumber, previousPhoneNumber == chatMessage.userPhoneNo {
                         phoneNumberLabel.isHidden = true
                     } else {
+                        bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -20).isActive = true
+                        bubbleBackgroundView.bottomAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 8).isActive = true
                         phoneNumberLabel.text = getContactName(for: chatMessage.userPhoneNo) ?? chatMessage.userPhoneNo
                         phoneNumberLabel.isHidden = false
                     }
@@ -41,7 +44,11 @@ class MessageTableViewCell: UITableViewCell {
             
         }
     }
-    
+    private func assignColorToPhoneNumber(_ phoneNumber: String) -> UIColor {
+        let colors: [UIColor] = [.red, .blue, .green, .purple, .orange]
+        let phoneNumberHash = abs(phoneNumber.hashValue) % colors.count
+        return colors[phoneNumberHash]
+    }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(bubbleBackgroundView)
@@ -69,7 +76,7 @@ class MessageTableViewCell: UITableViewCell {
             bubbleBackgroundView.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor, constant: -16),
             bubbleBackgroundView.bottomAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 16),
             bubbleBackgroundView.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor, constant: 16),
-            phoneNumberLabel.topAnchor.constraint(equalTo: bubbleBackgroundView.topAnchor),
+            phoneNumberLabel.topAnchor.constraint(equalTo: bubbleBackgroundView.topAnchor,constant: 4),
             phoneNumberLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
             phoneNumberLabel.trailingAnchor.constraint(equalTo:bubbleBackgroundView.trailingAnchor, constant: -16)
         ]

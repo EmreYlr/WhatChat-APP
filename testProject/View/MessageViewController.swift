@@ -16,7 +16,7 @@ class MessageViewController: UIViewController{
     var room: RoomId?
     var isGroup: Bool?
     
-    let manager = SocketManager(socketURL: URL(string: "http://3.71.199.20:8085")!,config: [.log(true), .compress ])
+    let manager = SocketManager(socketURL: URL(string: "http://3.68.83.204:8085")!,config: [.log(true), .compress ])
     var socket: SocketIOClient!
     
     var messagesFromServer = [ChatMessage]()

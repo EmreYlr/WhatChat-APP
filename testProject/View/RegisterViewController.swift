@@ -24,7 +24,7 @@ class RegisterViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //passwordTextField.isSecureTextEntry = true
+        passwordTextField.isSecureTextEntry = true
         clientViewModel = ClientViewModel()
     }
     //MARK: FUNCTION

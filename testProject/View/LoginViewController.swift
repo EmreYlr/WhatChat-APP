@@ -56,7 +56,7 @@ extension LoginViewController{
 extension LoginViewController{
     func checkUser(username: String, password: String, completion: @escaping (Bool?) -> Void) {
         loginViewModel.checkUser(username, password) {check in
-            //self.stopLoader()
+//            self.stopLoader()
             completion(check)
         }
     }
