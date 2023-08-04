@@ -70,7 +70,7 @@
 		C31705572A729BBE008E69D2 /* GroupNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNameViewController.swift; sourceTree = "<group>"; };
 		C31705592A729E83008E69D2 /* GroupRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRoom.swift; sourceTree = "<group>"; };
 		C317055B2A729EB3008E69D2 /* GroupNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNameViewModel.swift; sourceTree = "<group>"; };
-		C327157F2A5AFDF60018D869 /* testProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C327157F2A5AFDF60018D869 /* WhatChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C32715822A5AFDF60018D869 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C32715842A5AFDF60018D869 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C32715862A5AFDF60018D869 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 		C32715762A5AFDF50018D869 = {
 			isa = PBXGroup;
 			children = (
-				C32715812A5AFDF60018D869 /* testProject */,
+				C32715812A5AFDF60018D869 /* WhatChat */,
 				C32715802A5AFDF60018D869 /* Products */,
 				90652091D4A0B767666E8DE5 /* Pods */,
 				824F703E807FC88D1BB90094 /* Frameworks */,
@@ -199,12 +199,12 @@
 		C32715802A5AFDF60018D869 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C327157F2A5AFDF60018D869 /* testProject.app */,
+				C327157F2A5AFDF60018D869 /* WhatChat.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C32715812A5AFDF60018D869 /* testProject */ = {
+		C32715812A5AFDF60018D869 /* WhatChat */ = {
 			isa = PBXGroup;
 			children = (
 				C32715882A5AFDF60018D869 /* Main.storyboard */,
@@ -219,7 +219,7 @@
 				C30F48802A5D74B8002F0534 /* Model */,
 				C3C01F7B2A61EF300046F6EE /* Service */,
 			);
-			path = testProject;
+			path = WhatChat;
 			sourceTree = "<group>";
 		};
 		C32D60222A64628E006ACAEE /* User */ = {
@@ -346,9 +346,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C327157E2A5AFDF50018D869 /* testProject */ = {
+		C327157E2A5AFDF50018D869 /* WhatChat */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C32715932A5AFDF60018D869 /* Build configuration list for PBXNativeTarget "testProject" */;
+			buildConfigurationList = C32715932A5AFDF60018D869 /* Build configuration list for PBXNativeTarget "WhatChat" */;
 			buildPhases = (
 				D7A6608DAB11246E27A5DED1 /* [CP] Check Pods Manifest.lock */,
 				C327157B2A5AFDF50018D869 /* Sources */,
@@ -360,9 +360,9 @@
 			);
 			dependencies = (
 			);
-			name = testProject;
+			name = WhatChat;
 			productName = testProject;
-			productReference = C327157F2A5AFDF60018D869 /* testProject.app */;
+			productReference = C327157F2A5AFDF60018D869 /* WhatChat.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -380,7 +380,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C327157A2A5AFDF50018D869 /* Build configuration list for PBXProject "testProject" */;
+			buildConfigurationList = C327157A2A5AFDF50018D869 /* Build configuration list for PBXProject "WhatChat" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -395,7 +395,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C327157E2A5AFDF50018D869 /* testProject */,
+				C327157E2A5AFDF50018D869 /* WhatChat */,
 			);
 		};
 /* End PBXProject section */
@@ -652,7 +652,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = testProject/Info.plist;
+				INFOPLIST_FILE = WhatChat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -664,7 +664,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.emre.testProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emre.WhatChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -681,7 +681,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = testProject/Info.plist;
+				INFOPLIST_FILE = WhatChat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -693,7 +693,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.emre.testProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emre.WhatChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -704,7 +704,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C327157A2A5AFDF50018D869 /* Build configuration list for PBXProject "testProject" */ = {
+		C327157A2A5AFDF50018D869 /* Build configuration list for PBXProject "WhatChat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C32715912A5AFDF60018D869 /* Debug */,
@@ -713,7 +713,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C32715932A5AFDF60018D869 /* Build configuration list for PBXNativeTarget "testProject" */ = {
+		C32715932A5AFDF60018D869 /* Build configuration list for PBXNativeTarget "WhatChat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C32715942A5AFDF60018D869 /* Debug */,

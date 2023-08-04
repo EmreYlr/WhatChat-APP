@@ -44,11 +44,20 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C327157E2A5AFDF50018D869"
+            BuildableName = "WhatChat.app"
+            BlueprintName = "WhatChat"
+            ReferencedContainer = "container:WhatChat.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C327157E2A5AFDF50018D869"
             BuildableName = "testProject.app"
             BlueprintName = "testProject"
             ReferencedContainer = "container:testProject.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -66,6 +75,15 @@
             ReferencedContainer = "container:testProject.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C327157E2A5AFDF50018D869"
+            BuildableName = "testProject.app"
+            BlueprintName = "testProject"
+            ReferencedContainer = "container:testProject.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
